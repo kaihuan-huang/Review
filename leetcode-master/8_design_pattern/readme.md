@@ -23,3 +23,5 @@
 
 ![2.3 Open-Close Principle: Strategy Patterns](image-5.png)
 ![alt text](image-6.png)
+
+''''''

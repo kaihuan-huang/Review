@@ -145,8 +145,48 @@ class Array:
         
     #Remove the last element in the array
     def popback(self):
-        if self.length > O:
+        if self.length > 0:
             self.length -= 1
-
+            
+            
+# Adapter: allows incompatible object to be used together. Following the Open-Closed principle, we can extend class behaviour without modifying the class itself.
+# If a MicroUsbCable class is initially incompatible with UsbPort, we can create a wrapper class(i.e. an Adapter), which makes them compatible. 
+class UsbCable:
+    def __init__(self):
+        self.isPlugged = False
         
+    def plugUsb(self):
+        self.isPlugged = True
+        
+class UsbPort:
+    def __init__(self):
+        self.portAvaliable = True
+        
+    def plug(self, usb):
+        if self.portAvaliable:
+            usb.plugUsb() # Call plugUsb on the passed-in usb object
+            self.portAvaliable = False
+            
+# UsbCable can plug directly into Usb ports
+usbCable = UsbCable()
+usbPort1 = UsbPort()
+usbPort1.plug(usbCable)
+
+class MicroUsbCable:
+    def __init__(self):
+        self.isPlugged = False
+        
+    def plugMicroUsb(self):
+        self.isPlugged = True
+        
+class MicroToUsbAdapter(UsbCable):
+    def __init__(self, microUsbCable):
+        self.microUsbCable = microUsbCable
+        self.microUsbCable.plugMicroUsb()
+        #can override UsbCable.plugUsb() if needed
+        
+#MicroUsbCables can plug into Usb port via an adaptor
+microToUsbAdapter = MicroToUsbAdapter(MicroUsbCable())
+usbPort2 = UsbPort()
+usbPort2.plug(microToUsbAdapter)
         
