@@ -1,4 +1,4 @@
-#BFS-Remove
+#BST-Remove
 def minValueNode(root):
     curr = root
     while curr and curr.left:
@@ -23,3 +23,34 @@ def remove(root, val):
             root.val = minNode.validator
             root.right = remove(root.right, minNode.val)
     return root
+
+#BST - Traversal
+# 1. In Order Travesal (print form smallest to largest)
+def inorder(root):
+    if not root:
+        return
+    inorder(root.left)
+    print(root.val)
+    inorder(root.right)  
+# 2. reverse-order travesal (print the value from lagest to smallest)
+def reverse(root):
+    if not root:
+        return
+    reverse(root.right)
+    print(root.val)
+    reverse(root.left)
+    
+# 2. Pre Order Traversal
+def preorder(root):
+    if not root:
+        return
+    print(root.val)
+    preorder(root.val)
+    preorder(root.right)
+# 3. Post Order Travesal
+def postorder(root):
+    if not root:
+        return
+    postorder(root.left)
+    postorder(root.right)
+    print(root.val)
