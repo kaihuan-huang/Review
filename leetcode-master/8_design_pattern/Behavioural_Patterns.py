@@ -4,9 +4,6 @@
 # Multiples Observer(aka Subscriber) will recieve events from the SUbject realtime
 
 #  Observer/PubSub widely used beyond just Object-oriented programming
-
-
-
 class YoutubeChannel:
     def __init__(self, name):
         self.name = name
