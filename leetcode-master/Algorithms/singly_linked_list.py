@@ -12,3 +12,4 @@ ListNode3.next = null
 cur = ListNode1
 while cur:
     cur = cur.next
+ 
