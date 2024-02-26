@@ -24,3 +24,31 @@ def mergeSort(int[] arr, int s, int e){
     merge(arr, s, m, e);
     return arr;
 }
+
+# Sorting - Quick Sort 
+# 
+int[]
+quickSort(int[] arr, int s, int e){
+    if (e - s + 1 <= 1)
+    return arr
+
+    pivot = arr[e]
+    left = s
+    
+    # Partition: elements smaller than pivot on the left side
+    for i form s to e {
+        if (arr[i] < pivot){
+            tmp = arr[left]
+            arr[left] = arr[i]
+            arr[i] = tmp
+            left += 1
+        }
+    }
+    # Move pivot in-between left & right sides
+    arr[e] = arr[left]
+    arr[left] = pivot
+    
+    quickSort(arr, s, left - 1)
+    quickSort(arr, left + 1, e)
+    return arr
+}
