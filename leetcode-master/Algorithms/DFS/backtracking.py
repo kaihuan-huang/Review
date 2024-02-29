@@ -78,4 +78,23 @@ def helper2(i, nums, curSet, subsets):
         i += 1
     helper2(i + 1, nums, curSet, subsets)
     
+'''Combinations
+Q: Given two nums n & k, return all possible combinaitons of size=k, choosing from values between 1 and n.
+'''
+# TC: O(k * C(n, k))
+def combinations(n, k):
+    combs = []
+    helper3(1, [], combs, n, k)
+    return combs
+
+def helper3(i, curComb, combs, n, k):
+    if len(curComb) == k:
+        combs.append(curCombs.copy())
+        return
+    if i > n:
+        return
     
+    for j in range(i, n + 1):
+        curComb.append(j)
+        helper3(j + 1, curComb, combs, n, k)
+        curComb.pop()
