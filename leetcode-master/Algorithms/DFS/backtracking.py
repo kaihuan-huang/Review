@@ -29,4 +29,53 @@ Backtracking: go throught every possibility way to the end O(n)
      path.pop()
      return False
  
- 
+ '''Subsets 
+ Q: Given a list of distinct nums, return all possible distinct subsets
+    include the empty list 
+    *** diatinct == no duplicates
+ '''
+# Time: O(N*2^n) >> O(n) = Space Complexity
+def subsestWithoutDuplicates(nums):
+    subsets, curSet = [], []
+    helper(0, nums, curSet, subsets)
+    return subsets
+
+def helper(i, nums, curSet, subsets):
+    if i >= len(nums):
+        subsets.append(curSet.copy())
+        return
+    
+    # decision to include nums[i]
+    curSet.append(nums[i])
+    helper(i + 1, nums, curSet, subsets)
+    curSet.pop()
+    
+    # decision NOT to include nums[i]
+    helper(i + 1, nums, curSet, subsets)
+    
+'''If the subsets contain duplicates?
+Q: Given a list of number that are not necessary distinct, return all distinct subsets
+when we reach duplicate values skipping all of them
+'''
+# Time: O(N*2^n) >> O(n) = Space Complexity
+def subsetsWithDuplicates(nums):
+    nums.sort()
+    subsets, curSet = [], []
+    helper2(0, nums, curSet, subsets)
+    return subsets
+def helper2(i, nums, curSet, subsets):
+    if i >= len(nums):
+        subsets.append(curSet.copy())
+        return
+    
+    #decision to include nums[i]
+    curSet.append(nums[i])
+    helper2(i + 1, nums, curSet, subsets)
+    curSet.pop()
+    
+    # *** decision NOT to include nums[i]: when we reach duplicate values skipping all of them
+    while i + 1 < len(nums) and nums[i] == nums[i + 1]:
+        i += 1
+    helper2(i + 1, nums, curSet, subsets)
+    
+    
