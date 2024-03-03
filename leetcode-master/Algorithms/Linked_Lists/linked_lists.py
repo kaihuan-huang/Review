@@ -9,3 +9,13 @@ tail = tail.next
 
 '''Queues: FIFO First In First Out'''
 
+'''Fast and Slow Pointer
+Q: Find the middle of a linked list
+TC: O(n); SC: O(1)
+'''
+def middleOfList(head):
+    slow, fast = head, head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    return slow

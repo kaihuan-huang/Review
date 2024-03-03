@@ -1,3 +1,4 @@
+
 '''Q: Determine if a path exists from the root of the tree to a leaf node. It may not contain any zeroes
 Backtracking: go throught every possibility way to the end O(n)
 '''
@@ -131,3 +132,4 @@ def permutationsIterative(nums):
                 nextPerms.append(pCopy)
         perms = nextPerms
     return perms
+
