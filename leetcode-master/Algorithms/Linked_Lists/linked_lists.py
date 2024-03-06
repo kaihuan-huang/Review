@@ -56,4 +56,3 @@ def cycleStart(head):
         slow2 = slow2.next
     return slow # they will intercet at the head of cycle(#2)
         
-    
