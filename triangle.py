@@ -72,3 +72,17 @@ def remove_duplicates(S):
 
 S = "aaazyyzybab"
 print(remove_duplicates(S))
+
+'''Topics Covered in the Exam
+Topics covered in the exam include:
+
+Fundamentals of machine learning and neural networks
+Prompt engineering
+Alignment
+Data analysis and visualization
+Experimentation
+Data Preprocessing and feature engineering
+Experiment design
+Software development
+Python libraries for LLMs
+LLM integration and deployment'''
