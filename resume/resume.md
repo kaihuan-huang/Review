@@ -64,4 +64,52 @@ Certainly! Let's dive into these areas in more detail to help you prepare for po
 
 - **Ensuring Data Integrity**: Talk about mechanisms to ensure data integrity, including primary keys, foreign keys, constraints (e.g., UNIQUE, NOT NULL, CHECK), and transactions. Mention ACID properties (Atomicity, Consistency, Isolation, Durability) and how they're supported by the database systems you've worked with.
 
-`
+Are you currently employed? Can you commit to dedicating 20 to 25 hours weekly to this position at Collective Health?
+Currently, I am self-employed, which provides considerable flexibility in my schedule. I assure you of my commitment to dedicating at least 20 to 25 hours weekly to Collective Health. My entrepreneurial background allows me to manage my time and responsibilities adeptly, ensuring my availability to meet the demands of this role.
+ 
+
+What relevant experience do you have as a Junior Software Engineer, and how have your previous roles prepared you for this position at Collective Health?
+
+ My experience as a Co-Founder of Real Estate Assistant AI Inc. has equipped me with a robust foundation in software development, particularly within the tech stack that includes React Native, Python with FastAPI, and Laravel PHP. This role entailed leading the development of a comprehensive web and mobile app ecosystem from conception to deployment, emphasizing system architecture for enhanced functionality. This experience, combined with my project work on Automated Clinical Q&A and AI-assisted annotation using MONAI Label, showcases my ability to apply technological solutions in healthcare contexts, making me well-prepared for a position at Collective Health.
+
+
+Collective Health places a high value on precision in software development. Can you share an example from your experience where attention to detail was crucial, and how did you ensure the accuracy of your work?
+
+In my projects, precision is not just a requirement but a principle. While developing an AI-driven assistant module, the accuracy of our natural language understanding algorithms was paramount. To ensure the highest accuracy, I incorporated retrieval augmented generation and meticulously tested for edge cases, validating our algorithms against a broad dataset to minimize errors. This attention to detail was critical in delivering a product that reliably interprets and responds to user inputs.
+
+
+Junior Software Engineers often manage multiple tasks concurrently. How do you organize and prioritize your work to ensure efficiency and meet project deadlines?
+
+Efficiency in managing multiple tasks concurrently is achieved through robust project management tools and a disciplined workflow. I utilize platforms like GitHub for version control and task tracking, alongside Azure for cloud services, to ensure clear organization and prioritization of tasks. My approach involves breaking down projects into smaller, manageable tasks, establishing clear milestones, and applying agile methodologies to adapt to evolving project needs, ensuring timely delivery.
+
+
+Describe a specific challenge you encountered during software development. How did you identify the issue, and what steps did you take to resolve it?
+
+ A significant challenge in my career involved resolving connectivity issues while integrating Instagram and Meta APIs. The solution required a deep dive into OAuth 2.0 protocols and collaboration with my development team to re-engineer our approach. This process included rigorous testing and validation phases, resulting in a robust integration that met and exceeded our security and functionality standards.
+
+
+Security and confidentiality are paramount in software development. How do you ensure the security of sensitive information during the development process?
+
+ Security and confidentiality are the cornerstones of my development philosophy. I implement JWT for secure API interactions and ensure all databases are encrypted and access-controlled. Furthermore, during the development of our omnichannel communication system, I adhered strictly to OAuth 2.0 standards, incorporating best practices for data encryption and secure authentication to protect sensitive information.
+
+
+Collective Health adheres to specific policies regarding data security and confidentiality. How do you ensure compliance with such policies in your software development work, and can you provide an example from your previous experience?
+
+Compliance with data security and confidentiality policies is integral to my work. In developing healthcare-related applications, such as the Automated Clinical Q&A, I ensured our practices were in strict alignment with HIPAA guidelines. This involved regular audits, implementing end-to-end encryption, and maintaining rigorous access controls to safeguard patient data.
+
+
+What programming languages, tools, or frameworks are you familiar with, and how do you stay updated on the latest advancements in software development technology?
+
+I am proficient in several programming languages and frameworks, including:
+
+Languages: Python, JavaScript, Java, PHP, TypeScript
+Duo Linguistics Proficiency: Fluent in English, Spanish, Mandarin, and Cantonese
+Web Development Tools: Bootstrap, Tailwind, Redux, React Native, Node.js, Express.js, Django, Flask, GraphQL
+Developer Tools: AWS, Azure, Kubernetes, Docker, Nginx, Heroku, Bash, Webpack, Figma, Postman, Zapier, Git
+Machine Learning & Databases: TensorFlow, PyTorch, Scikit-learn, OpenCV, Pandas, Seaborn, MongoDB, MySQL, PostgreSQL, Vector Database, Redis
+I am familiar with healthcare-centric tools like MONAI for AI-assisted annotations. My commitment to staying updated on technological advancements is fulfilled through continuous learning; I engage in online courses, attend industry conferences, and contribute to open-source projects to keep abreast of new technologies and methodologies.
+
+
+How long do you foresee yourself working with Collective Health if hired, and what hourly rate are you seeking?
+
+I am looking for a long-term opportunity to contribute to impactful projects and grow with the organization. I envision a future with Collective Health where my skills can support innovation in healthcare technology. Regarding compensation, I am open to discussing a competitive hourly rate that reflects the industry standards and the value I bring to the team.
