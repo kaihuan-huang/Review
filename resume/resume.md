@@ -113,3 +113,11 @@ I am familiar with healthcare-centric tools like MONAI for AI-assisted annotatio
 How long do you foresee yourself working with Collective Health if hired, and what hourly rate are you seeking?
 
 I am looking for a long-term opportunity to contribute to impactful projects and grow with the organization. I envision a future with Collective Health where my skills can support innovation in healthcare technology. Regarding compensation, I am open to discussing a competitive hourly rate that reflects the industry standards and the value I bring to the team.
+
+'''2.5 Lesson 2: The Performance Challenge
+ Lesson - The Performance Challenge
+ 
+
+In this lesson we will expand our knowledge of memory systems, moving away from basic knowledge, to appreciate the performance limitations of standard memories, and how they also relate to program behaviour, and then exploring various techniques for side-stepping these performance barriers and achieving better performance.
+
+'''
