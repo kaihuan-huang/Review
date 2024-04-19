@@ -52,6 +52,7 @@ class DynamicArray:
     # O(1)
     def getCapacity(self) -> int:
         return self.capacity
+    
 
 '''
 Constructor (__init__): Initializes the array with a specified capacity.

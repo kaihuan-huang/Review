@@ -9,6 +9,7 @@ class YoutubeChannel:
         self.name = name
         self.subscribers = []
         
+        
     def subscribe(self, event):
         self.subscribers.append(event)
         
