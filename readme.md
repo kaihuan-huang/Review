@@ -13,7 +13,6 @@ One potential bottleneck can occur during context switching, which can be time-c
 
 Improper handling of locking mechanisms can indeed result in bottlenecks, especially if the locks are held for long durations or are frequently accessed, leading to a condition known as lock contention. In such cases, the performance can degrade significantly as threads or processes get stuck waiting for resources, reducing the overall throughput of the system.
 
-'''Physical memory: The RAM memory that has been physically built into the system. It represents the SIMMs and DIMMs that are present. This memory is fixed in size as a limit of the hardware installed.'''
 
 
 
