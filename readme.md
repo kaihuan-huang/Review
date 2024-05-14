@@ -11,7 +11,4 @@ ii) Analyzing key processes in a user application accessing hardware resources:
 
 The process begins when a user application makes a system call to request access to a hardware resource. The operating system kernel, which is responsible for managing these requests, will use device drivers (including third-party drivers if necessary) to communicate with the physical hardware. It's the kernel's role to schedule the request and allocate the necessary resources, which could include CPU time, memory space, or input/output operations.
 
-One potential bottleneck can occur during context switching, which can be time-consuming, especially if there are many processes contending for the CPU. Another common bottleneck is resource contention, where multiple applications or processes request the same resource simultaneously, causing a queue and increased latency. Additionally, if the I/O operations are intensive and the hardware is slow, this could also result in a bottleneck, particularly for disk reads/writes or network communication.
-
-Improper handling of locking mechanisms can indeed result in bottlenecks, especially if the locks are held for long durations or are frequently accessed, leading to a condition known as lock contention. In such cases, the performance can degrade significantly as threads or processes get stuck waiting for resources, reducing the overall throughput of the system.
 
