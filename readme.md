@@ -9,6 +9,6 @@ ii) Analyzing key processes in a user application accessing hardware resources:
 
 
 
-The process begins when a user application makes a system call to request access to a hardware resource. The operating system kernel, which is responsible for managing these requests, will use device drivers (including third-party drivers if necessary) to communicate with the physical hardware. It's the kernel's role to schedule the request and allocate the necessary resources, which could include CPU time, memory space, or input/output operations.
+
 
 
