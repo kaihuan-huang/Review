@@ -1,1 +1,0 @@
-Object Relational Mapping (ORM) a "bridge" between object-oriented programs and relational database

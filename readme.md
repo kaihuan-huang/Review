@@ -5,7 +5,7 @@ B. BIOS (Basic Input/Output System): BIOS is firmware that initializes and tests
 C. Boot Code: Boot code is responsible for starting the operating system, but within the operating system hierarchy, this could represent the "Hardware Abstraction Layer (HAL)" or similar.
 D. Third Party Drivers: This can indeed include third-party or additional drivers that extend the functionality of the OS kernel, but it could also represent system libraries or services that provide common functionality to applications.
 
-ii) Analyzing key processes in a user application accessing hardware resources:
+
 
 
 
