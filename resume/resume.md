@@ -1,5 +1,6 @@
 '''1. **React Native**: A framework for building native apps using JavaScript and React.
 2. **React Native Development**: build a cross-platform mobile app, handling native components, and optimizing performance for both Android and iOS.
+
 3. **FastAPI:** fast web framework for building APIs with Python. Developing a web application using Laravel, emphasizing MVC architecture, ORM (Object-Relational Mapping), authentication, and artisan command-line tooling.
 4. **Laravel PHP**: A web application framework with expressive, elegant syntax for PHP.
 5. **PostgreSQL**: An advanced open-source relational database.
