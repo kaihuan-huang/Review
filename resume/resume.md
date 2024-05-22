@@ -49,6 +49,7 @@ Certainly! Let's dive into these areas in more detail to help you prepare for po
 
 - **Performance Optimization**: For optimizing React applications, be prepared to talk about techniques such as code splitting, lazy loading components with `React.lazy` and `Suspense`, memoizing components with `React.memo`, and avoiding unnecessary re-renders with `useMemo` and `useCallback`.
 
+
 #### Back-End Development: Node.js, Express.js, Django, Flask
 
 - **Designing a RESTful API with Node.js**: When designing a RESTful API, you should be able to discuss creating endpoints that follow REST principles, handle CRUD operations, and use HTTP methods (GET, POST, PUT, DELETE) appropriately. Mention middleware in Express.js for handling cross-cutting concerns like logging, error handling, and authentication.

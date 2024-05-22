@@ -7,7 +7,6 @@ Register for MongoDB Atlas
 https://www.mongodb.com/cloud/atlas/register
 
 MongoDB Shell
-Connect to MongoDB Shell
 mongosh // connects to mongodb://127.0.0.1:27017 by default
 mongo "mongodb+srv://cluster-name.abcde.mongodb.net/<dbname>" --username <username> // MongoDB Atlas
 Basic Commands
