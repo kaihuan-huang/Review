@@ -4,10 +4,11 @@
 
 To calculate the minimum word edit distance between two strings, use the dynamic programming approach. The idea is to create a 2D array `dp` of size `(m + 1) x (n + 1)`, where `m` and `n` are the lengths of the two strings. The value `dp[i][j]` represents the minimum number of operations required to convert the first `i` characters of the first string to the first `j` characters of the second string.'''
 
+''''''
 
 
-
-
+TC = O(m*n)
+SC = O(m*n)
 
 def min_word_edit_distance(word1, word2):
     m, n = len(word1), len(word2)
