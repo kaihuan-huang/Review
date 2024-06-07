@@ -1,4 +1,4 @@
-Sure, here are detailed answers to each question based on the evaluation metrics for recommendation systems:
+the evaluation metrics for recommendation systems:
 
 1. **Can you explain what Precision@K and Recall@K are and how they differ?**
    - **Precision@K** measures the proportion of relevant items among the top-K recommendations. It is calculated as the number of relevant items in the top-K recommendations divided by K. It shows how accurate the recommendations are at the top of the list.
