@@ -1,0 +1,2419 @@
+<!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+        <title>Design an Inventory Management System</title>
+
+        <style>
+          html {
+            margin: 0;
+            padding: 0;
+          }
+
+          @font-face {
+  font-family: 'mm-iconfont';
+  src: url('data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAAVcAA0AAAAADSAAAAUHAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cGh4GVgCCShEICo0IigYLGAABNgIkAx4EIAWFLAd0G58KyI7S1LBNkiTFr/P/+6Z638ziLBkIQ8wrsxwEKUmBA4Dwlfarxzy8f+PP7b21ZXFa6IFleXg1a60AqO3LF3jX79fq2xMRxM/jDd1CpYX3FxcP1SqJuY6YNU3FUiQ2jtU11Up8H/EkAATA3TXpGgA83rt/vfLZBDABYQCGcAKRAAxAFXRBBnayKwD+gZ+nPyqFBjBygXL/DlvTIWjwo3cVuK8s9Sl++AEEEjlOjElBk3hilJIMpUKKY21LyxouyaqeWOQjuRrUI+IKdQAY7d9DwI5a04k3MIQFzgG2AOwIKjVqJIrYTsbHABOn6EE+VdOSA1gHO0CS9GBxkMQUvqKqmhP23oxVltyoYu+7Facuv129xJ6zAUpuNJw/Noer8zbl/7HRtyFEqCv9mw2LZ3VXCfF7ULGQwXk1E0zFkant5pHX+SO069xIZQFP7GuSunhzT+uPuaGY8wjz93lhNH9+VyPuCPieEDFvrGZaKEn8By0/Xn3v0RVHUmC89ZOhDlh3jGjeou4WwZ4VRP5wFNIcni96pNDC/qa/zwFLw/qDuH+eGGTtvRnLltyoYu67FceX3+5qwVyZ4I0Xa9BhhYiSnsziTU5ZezSSLTiSYq47FsUXHwcvFjNkwu3NBXzMKiJ/15BtsMQ1xgy5e7/7/fvd7t3pcudO16737nWjDd3v3u16ULnTY0/s1yP0/Scmui+Y0HDii4p2hF3JmehUsiKsiv/3cSrHVX6R/IJJdzYQ9r9pP26TdOc/zP6LnbKg9ZkfiIwv+XOzYQe94qkIvdk05Kn/lyMsmm8KPh98KGQVX3h25WBxRS+vXRVyjG6mfDgvpohyqM+M8zOu6OX0K63v9aXZ8EOl+hM99FbLkGeTpl4Nig85BNS98ahbdCwAz502byvV8h3Wg/UjvlpDaulHWXJ45xmpkR+vfH/c0lR+U6qRDFPFMasTvr+qVeUxFMVUJpGYeohQqEP2nPx5SKO4ooVwruVuCjlnklU9Hy5kSay6LNeiYqv7PjU71+oQWCgHdmB+QcB1t5V7+623sbeXXsGLgy+EbAxegxZ1XtyouW5Ld5F9q9GtCZ11Z2HDJg27dS5c0djIMyrvwL1Elbgmbkv3nTmpbTx5a58ZEeHlIiJmhEeUCw87OCNCZSJMkqK4nWJa+E70KviUNnlpz8pnolu0atLWPDd5Ye+6N0Latm/RSb7VtNuTc6v4gwfcUq568CBa6AgAAAnf3mlYOr2/U+eHZkg41F2gtCyzuA+AhmkRcXiKqLkGv0G0LKl6EWquoiXD9ua35Kvrb/DSahlAIBNQhmOQZyAoDJUTmoihl4lRjTZxhnkgcQ+BzH1GFGkwk5AdnosNwXEIHFUdQBaAiYRpZGJsHhMXZjJI3FUgc8+Bwv1kErqFfbIhLWZBaGw410AjbdshEgwyzrnAYKW8POuMJEDcicMjIvxjg+tAiRK5pAole26Fi4FOXHlGKTbQcPjt4uTbTV5w7sY13AgFgxNUVE4FuIWzBBXLVegDmsd7+xlrL3oZYbQ8lXKUI3lyPYaTxhIJmrG5rmK9vlSCoflfKeQabKRy8CCw7YjReZVGjvRc/8Gn3vEiLOr74PlAfv+1Q9VSHs/l6Tm/nMFjJuLiPNHTGI9vR5xALUQwYDyIsGDESSKZFFJJI908y2iXWzJq0Cj5RDdOO6nFE954+YIpXx1UcFoaLx+TN/EhpYPVt1cBAA==') format('woff2'),
+      url('data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAAfMAA0AAAAADSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAHsAAAABoAAAAcjQ+WV0dERUYAAAeQAAAAHgAAAB4AKQART1MvMgAAAaAAAABCAAAAVjxwSCNjbWFwAAAB/AAAAEkAAAFK5m7pl2dhc3AAAAeIAAAACAAAAAj//wADZ2x5ZgAAAmAAAAN8AAAGiB3BA0toZWFkAAABMAAAADAAAAA2GiKzS2hoZWEAAAFgAAAAHQAAACQHcAOFaG10eAAAAeQAAAAYAAAAHg2lAQZsb2NhAAACSAAAABgAAAAYB5YI6G1heHAAAAGAAAAAHwAAACABHQB6bmFtZQAABdwAAAFNAAACrJtyy2Nwb3N0AAAHLAAAAFkAAAB0hhp62HjaY2BkYGAA4iTORQfi+W2+MnCzMIDA7a3bl8Nptv8NzJOYG4BcDgYmkCgASEMMAXjaY2BkYGBu+N/AEMPCAALMkxgYGVABCwBRzAL+AAAAeNpjYGRgYOBmyGPgYAABJiDmAkIGhv9gPgMAFOkBmAB42mNgZGFgnMDAysDA1Ml0hoGBoR9CM75mMGLkAIoysDIzYAUBaa4pDA7PGJ8ZMDf8b2CIYW5kaAQKM4LkAN52DA4AAHjaY2GAABYIZmPwBMI8MPRkaAAAEskCuHjaY2BgYGaAYBkGRgYQcAHyGMF8FgYNIM0GpBkZmJ4xPjP4/5+BAUhr/f8vxSR5C6oeCBjZGOAcRiYgwcSAChgZhj0AAM5gCc8AAAAAAAAAAAAAAACYAPQBjgH2Al4CugMSA0R42o1UT2zTdhR+z26c2ooduXbiEIdkjhtnKzRMThuXqI34syKlaDBp1ZD2hwMMkJAojAPigKAwDrtsmjggDcSFcoALEtzWy05rx20r5VAEhx2oYOyI2CVxeT+7JU0h0RTne9/zTy953/f8DL0grFzjv+DPQhxysAU82A374Ss4BoBZNFQFo1YJi2oNvYilYELVk2XLrXhqCdFN6kLULuFQhW61uMf4Fsw7xO11vNDhPvfv4Cji6GDzchi5c83LcV2Pc+fiOqLucyyxGeBthq/fwn8MfmTQ3zrecJM/iyMDjecDI0iRT1HchX1K47miaQqfUvqaM3qW/U1WX4uLIQ+vtgQAeqC+Ms1P8dPQC2kYgCr5ZKmWaued4YLl5jDJPLMtSskzjXwxEmFeHK6hUXaTmzF0iuXcT36C+25KUpr/cOO6cimGaGrN7VoG03N4WJIRZcm/EcZ5SQ6AOG83ZrlfFWlB+UHWGs9009T5m3raPyhL20SFQJJfyFIprKNAfQttfY/Bp/ANnHindxqvEPY+VNFo5Fmk+SfKWQybTqxrfwxL6FlhzkrGaPRGkIdyW3nrnOTq3OmTIpNb15XzciYQmzmDW/P0lBVyVTEWE6shpm05/gRjgigK/quoKEYZx951yepB4MasLD6Mf6/0Nf5edcP0B/PbED/eMSi4GBM1UcZvFQpksbPphfzBhCRUBCmAW2J0WOgVo+WoyCj7eQLm2RR5dmXVsw9hBEZhR8uz4ns8ywuU0jZQ4tgFq32DDCtheaqtcvdp6qdP0niaL8kH+bxs6s0q9f2Y4yNYjfCcP4dVx6UNc/y5IKp4xL++uLuT1KNU8iASQY/jJ1nRg7AYPcf9c2LZv4JTAO16TPgIttNzsLOrnvL/EJSwh98VlNaaI7qZ1v7oruj6rg2KtExa429pmW6KrtbjCwsb9aQhCyVwodJ9PnTyPhHs03Eqj/AT/w4eNwuI/Rn/ahBzrHv27TgR/zfcOckKfsn0s0I8ZhbG68t16jvStosOdV3rvomWS1tEGe2QsZ6XGae3KPFOq3UXf06l/FOGsRbvsatT1zNGKZUqGbP0JbYagIdpAH6aZ47LsAlAxGTFq2HREaIK5uhFUAzeFYaC3Ev/4pe/18flC1//ta8u7Hk6s9TTszQTIFf0Dw1l9u6bv1ZLfPb5wwPzaweEbwCNs0tEeNqNkT9OwzAYxZ/7D9FIHUAwe2IAmv4ZO1Kp7Awd2NrUCa2SOHLcSl04BAMH4Bg9AMfgAD0Fr+HrUpbGyqefn5/fl9gArvADhb/nBo/CCgFehWu4wEa4Tv1TuEHeCTfJx5wWAlUTbuNBxcIBrtWOCapxydl9lXZghVs8CdfQQSxcp/4u3CB/CTfJ38It8l64janqCAe4Ux9UxnAwmMGzLqAxx5Z1iQgWOTsdqqcP7bEzM28Wer7Vy8jmsc095Yyj+8+PLOseTcALsxOskbKP49Qk63Tmztt7jmfKfIeSrsOqxgAh+pSNK5c214Owf17OM3PyKuv0PEreb4IhVc+9mq9jQkaaSJLh36VkjaJaW1GJqIeMNblxx6MrN8nQ+1jHzmZ6wrYmTa0unF2ZyNP8VvUoMEKPIz5JD6vvz2jzvhj1erEEhJHN8AuKq3jTAAAAeNpdiEsOgCAQxXgogp+reChxJnESgUTQ86u4s4smrdLqY6iG+jPWq6HRoIVBBwuHfgoci6Q4h9Ofhg652AWJFFNhkzfmYr2Uxe9P7ULcUFotSX7PDa0DFeMAAAAAAAAB//8AAgABAAAADAAAABYAAAACAAEAAwAKAAEABAAAAAIAAAAAeNpjYGBgZACCq0vUOUD07a3bl8NoAEb7B4YAAA==') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.mm-iconfont::before {
+  font-family: 'mm-iconfont', sans-serif !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+          .mention[data-type='1']::before,
+          .mention[data-type='3']::before,
+          .mention[data-type='8']::before,
+          .mention[data-type='11']::before,
+          .mention[data-type='12']::before,
+          .mention[data-type='15']::before,
+          .mention[data-type='16']::before {
+            content: '\e62f';
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -4px;
+            font-size: inherit;
+          }
+          .mention[data-type='3']::before {
+            content: '\e62c';
+          }
+          .mention[data-type='8']::before {
+            content: '\e62d';
+          }
+          .mention[data-type='11']::before {
+            content: '\e62b';
+          }
+          .mention[data-type='12']::before {
+            content: '\e62a';
+          }
+          .mention[data-type='15']::before {
+            content: '\e62e';
+          }
+          .mention[data-type='22']::before {
+            content: '\e602';
+          }
+
+          body {
+            margin: 50px 20px;
+            padding: 0;
+            color: #333;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'PingFang SC',
+                  Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 黑体, Heiti, sans-serif,
+                  SimSun, 宋体, serif,
+                  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+          }
+
+          body.narrow {
+            max-width: 790px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+
+          .title {
+            min-height: 40px;
+            padding-left: 10px;
+            padding-bottom: 24px;
+            margin-bottom: 20px;
+            line-height: 40px;
+            font-size: 26px;
+            font-weight: 500;
+            border-bottom: 1px solid #e5e6e8;
+          }
+
+          .node-list {
+            margin: 0 0 0 28px;
+            padding: 0;
+            list-style: none;
+          }
+
+          .node {
+            position: relative;
+          }
+
+          .node.drill-node > .content {
+            margin-bottom: 15px;
+            font-size: 20px;
+            line-height: 28px;
+          }
+
+          .node.drill-node > .note {
+            margin-bottom: 10px;
+          }
+
+          .content {
+            min-height: 24px;
+            padding-top: 2px;
+            padding-bottom: 3px;
+            line-height: 24px;
+            font-size: 16px;
+          }
+
+          .note {
+            position: relative;
+            padding-bottom: 2px;
+            line-height: 22px;
+            font-size: 14px;
+            color: #888;
+            white-space: pre-wrap;
+          }
+
+          .content > *,
+          .note > * {
+            padding-top: 2px;
+            padding-bottom: 2px;
+          }
+
+          .note:empty {
+            padding-bottom: 0;
+          }
+
+          .node.finished .content,
+          .node.finished .note {
+            opacity: 0.5;
+          }
+
+          .node.finished > .content {
+            text-decoration: line-through;
+          }
+
+          .heading1 > .content {
+            min-height: 34px;
+            line-height: 34px;
+            font-size: 24px;
+            font-weight: 500;
+          }
+
+          .heading2 > .content {
+            min-height: 30px;
+            line-height: 30px;
+            font-size: 21px;
+            font-weight: 500;
+          }
+
+          .heading3 > .content {
+            min-height: 27px;
+            line-height: 27px;
+            font-size: 19px;
+            font-weight: 500;
+          }
+
+          .mention {
+            padding-left: 2px;
+            padding-right: 2px;
+            color: #5856d5;
+            word-break: break-all;
+            text-decoration: none;
+          }
+
+          .content-link {
+            color: unset;
+            opacity: 0.6;
+            word-break: break-all;
+          }
+
+          .tag {
+            text-decoration: underline;
+            opacity: 0.6;
+          }
+
+          .bold {
+            font-weight: bold;
+          }
+
+          .italic {
+            font-style: italic;
+          }
+
+          .underline {
+            text-decoration: underline;
+          }
+
+          .content .highlight-red,
+          .highlight-red > .content > * {
+            background-color: #fbbfbc;
+          }
+
+          .content .highlight-yellow,
+          .highlight-yellow > .content > * {
+            background-color: #f8e6ab;
+          }
+
+          .content .highlight-blue,
+          .highlight-blue > .content > * {
+            background-color: #bacefd;
+          }
+
+          .content .highlight-cyan,
+          .highlight-cyan > .content > * {
+            background-color: #a9efe6;
+          }
+
+          .content .highlight-pink,
+          .highlight-pink > .content > * {
+            background-color: #fdddef;
+          }
+
+          .content .highlight-olive,
+          .highlight-olive > .content > * {
+            background-color: #bbbfc4;
+          }
+
+          .content .highlight-grey,
+          .highlight-grey > .content > * {
+            background-color: #bbbfc4;
+          }
+
+          .text-color-red {
+            color: #dc2d1e;
+          }
+
+          .text-color-yellow {
+            color: #ffaf38;
+          }
+
+          .text-color-green {
+            color: #75c940;
+          }
+
+          .text-color-blue {
+            color: #3da8f5;
+          }
+
+          .text-color-purple {
+            color: #797ec9;
+          }
+
+          .bullet {
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            border-radius: 9px;
+          }
+
+          .node.collapsed > .bullet {
+            background-color: #dee0e3;
+          }
+
+          .heading1 > .bullet {
+            top: 10px;
+          }
+
+          .heading2 > .bullet {
+            top: 8px;
+          }
+
+          .heading3 > .bullet {
+            top: 6px;
+          }
+
+          .bullet-dot {
+            position: absolute;
+            left: 6px;
+            top: 6px;
+            width: 6px;
+            height: 6px;
+            background-color: rgb(100, 106, 115);
+            border-radius: 3px;
+          }
+
+          .image-list {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+          }
+
+          .image-item {
+            padding-top: 2px;
+            padding-bottom: 8px;
+          }
+
+          .image {
+            display: block;
+            max-width: 100%;
+          }
+
+          .children {
+            position: relative;
+          }
+
+          .note::before,
+          .image-list::before,
+          .children::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -17px;
+            width: 1px;
+            height: 100%;
+            background-color: #dee0e3;
+          }
+
+          .node.drill-node > .note::before,
+          .node.drill-node > .image-list::before,
+          .node.drill-node > .children::before,
+          body.noline .note::before,
+          body.noline .image-list::before,
+          body.noline .children::before {
+            display: none;
+          }
+
+          .node.drill-node > .note,
+          .node.drill-node > .content,
+          .node.drill-node > .image-list,
+          .node.drill-node > .children {
+            margin-left: 10px;
+          }
+
+          body.noline .node-list {
+            margin-right: 20px;
+          }
+
+          .publish {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+          }
+
+          .publish-link {
+            color: #4694FF;
+          }
+
+          .node .mention.mm-iconfont::before {
+            content: '\e601';
+          }
+
+          .node .mention.mm-iconfont {
+             color: #5856d5;
+          }
+
+          @media print {
+            body {
+              margin-top: 0;
+              margin-bottom: 0;
+            }
+          }
+
+          @page {
+            margin-left: 0.25in;
+            margin-right: 0.25in;
+            margin-top: 0.5in;
+            margin-bottom: 0.5in;
+          }
+        </style>
+      </head>
+      <body >
+        <div class="title">Design an Inventory Management System</div>
+        <ul class="node-list">
+    <li class="node heading2">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><a class="content-link" data-id="rRymmqBPrl" target="_blank" spellcheck="false" rel="noreferrer" href="https://codemia.io/system-design/design-an-inventory-management-system/solutions/scqt0z/Design-an-Inventory-Management-System-with-Score-910"><span class="content-link-text">Design an Inventory Management System</span></a></div>
+    
+    
+    
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-purple">System requirements</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-green">Functional:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Inventory Tracking:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Users can </span><span class=" text-color-blue">add, update,</span><span> and </span><span class=" text-color-blue">delete</span><span> items in the inventory.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Each item includes details such as </span><span class=" text-color-blue">product name, description, SKU(Stock Keeping Unit), price, quantity, location, and supplier information.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Stock Replenishment:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Users receive </span><span class=" text-color-blue">automated alerts </span><span>for items running low in stock.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Users can set up </span><span class=" text-color-blue">reorder points </span><span>for each product to trigger replenishment orders.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Replenishment orders can be generated automatically or manually by users.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Real-time Inventory Updates:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Inventory levels are updated in real-time to prevent overselling or stock outs.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Seamless integration between inventory management and order processing systems ensures real-time updates.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Order Fulfillment:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Users can process customer orders efficiently.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Inventory levels are updated in real-time as orders are processed to reflect accurate stock levels.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Features include order processing, shipping, and tracking.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Automated Stock Alerts:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Users receive automated alerts for low stock levels, out-of-stock products, or expired items.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Alerts can be configured to notify users via email, SMS, or in-app notifications.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Integration with Sales Channels:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The system integrates with external sales channels such as e-commerce platforms or retail stores.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Inventory data is synchronized across all channels to maintain consistency and prevent overselling.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Reporting and Analytics:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Users have access to reporting tools and analytics dashboards.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Features include inventory turnover analysis, stock accuracy assessment, supplier performance evaluation, and more.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Data visualization techniques are employed to present actionable insights to users.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-green">Non-Functional:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Scalability:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The system should be scalable to handle </span><span class=" text-color-blue">growing volumes of inventory data</span><span> and </span><span class=" text-color-blue">user transactions.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Horizontal scaling techniques should be employed to accommodate increased demand.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Performance:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The system should provide </span><span class=" text-color-blue">high performance with low latency</span><span> for user interactions.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Efficient data retrieval and processing mechanisms should be implemented to ensure optimal system performance.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Reliability:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The system should be highly reliable and available to users at all times.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Redundancy and failover mechanisms should be in place to minimize downtime and ensure continuous operation.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Security:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The system should adhere to industry-standard security practices to protect sensitive data.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Encryption should be used for data transmission and storage, and access controls should be implemented to restrict unauthorized access.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Usability:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The system should be intuitive and easy to use for both novice and experienced users.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>User interfaces should be designed with usability principles in mind to facilitate efficient navigation and task completion.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Compliance:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The system should comply with relevant regulatory requirements and industry standards.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Data privacy regulations, such as GDPR or CCPA, should be adhered to, and audit trails should be maintained for compliance purposes.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Maintainability:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The system should be easy to maintain and upgrade over time.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Code should be well-structured and documented, and modular design principles should be followed to facilitate maintenance and future enhancements.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-purple">Capacity estimation</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-green">Assumptions:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">User Base:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Number of Users:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>We assume an average of 50 concurrent users accessing the system at any given time. These users could include warehouse staff, inventory managers, sales team members, and administrators.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Transaction Volume:</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Average Transactions: Considering the operations involved in inventory management, we estimate an average of 500 transactions per hour. These transactions include updating inventory levels, processing orders, generating reports, and managing stock alerts.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Data Storage:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Initial Data Volume:</span><span> We assume an initial data storage requirement of around 100,000 product items with associated details such as SKU, description, price, supplier information, and inventory levels.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Growth Rate: </span><span>We estimate a growth rate of 10% per month in data volume to account for the addition of new products and increased transaction history.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">API Calls:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Average API Calls: We assume an average of 100 API calls per minute for real-time updates, order processing, and integration with sales channels.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Peak Traffic:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Peak Usage: We identify peak traffic during specific time periods, such as a 2x increase in transactions during sales promotions or seasonal peaks.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">System Response Time:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Response Time Target: We aim for an average response time of under 1 second for most user interactions within the system.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Redundancy and Scalability:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Scalability Planning: We plan for scalability to accommodate a 20% increase in users and transaction volume over the next year.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Performance Metrics Definition:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Response Time: Aim for an average response time of under 1 second for most user interactions.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Throughput: Target an average of 500 transactions per hour.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Error Rate: Aim for a minimal error rate, ideally less than 1%.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Workload Characterization:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Transaction Types: Inventory updates, order processing, report generation, and API calls for real-time updates and integration.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Peak Usage Scenarios: Seasonal peaks, sales promotions, and increased activity during specific time periods.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Resource Estimation:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>CPU and Memory: Estimate CPU and memory resources based on the expected workload and concurrent user connections.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Storage: Estimate storage requirements for storing product details, transaction logs, and historical data.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Network Bandwidth: Estimate network bandwidth for handling API calls, data transfers, and integration with external systems.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-yellow">Scalability Planning:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Horizontal Scaling: Plan for horizontal scaling to accommodate future growth and handle peak traffic loads.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Redundancy: Implement redundancy and failover mechanisms for high availability and fault tolerance.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Elasticity: Ensure the system can dynamically scale up or down based on demand to optimize resource utilization.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-purple">API design</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>For the Inventory Management System, several APIs are expected to </span><span class=" text-color-blue">facilitate various functionalities </span><span>such as </span><span class=" text-color-blue">inventory tracking</span><span>, </span><span class=" text-color-blue">stock replenishment</span><span>, </span><span class=" text-color-blue">order fulfillment</span><span>, and </span><span class=" text-color-blue">integration with external systems</span><span>. Here are the APIs expected from the system:</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Inventory Management API:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Purpose:</span><span> This API enables users to perform CRUD (Create, Read, Update, Delete) operations on inventory items.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Endpoints:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/inventory/items: Endpoint to retrieve a list of inventory items or add new items.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/inventory/items/{id}: Endpoint to retrieve, update, or delete a specific inventory item by its ID.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Stock Replenishment API:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Purpose:</span><span> This API handles stock replenishment operations such as generating reorder alerts and managing reorder points.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Endpoints:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/replenishment/alerts: Endpoint to retrieve alerts for low stock levels or generate new alerts.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/replenishment/orders: Endpoint to create, retrieve, or update replenishment orders.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Order Fulfillment API:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Purpose:</span><span> This API manages order processing, shipping, and tracking.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Endpoints:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/orders: Endpoint to create, retrieve, or update customer orders.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/orders/{id}/status: Endpoint to update the status of an order (e.g., processing, shipped, delivered).</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Real-time Updates API:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Purpose:</span><span> This API facilitates real-time updates to inventory levels as orders are processed or inventory items are modified.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Endpoints:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/updates/inventory: Endpoint to push real-time updates to inventory levels.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Automated Stock Alerts API:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Purpose:</span><span> This API sends automated alerts for low stock levels, out-of-stock products, or expired items.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Endpoints:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/alerts/stock: Endpoint to configure and manage automated stock alerts.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Integration API:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Purpose:</span><span> This API integrates the Inventory Management System with external sales channels, e-commerce platforms, or retail stores.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Endpoints:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/integration/sales_channels: Endpoint to synchronize inventory data with external systems.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Reporting and Analytics API:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Purpose:</span><span> This API provides access to reporting tools and analytics dashboards for insights into inventory turnover, stock accuracy, supplier performance, etc.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Endpoints:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>/reports: Endpoint to generate various reports and analytics data.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-purple">Database design</span></div>
+    <ul class="image-list">
+    <li class="image-item">
+    <img
+      src="https://api2.mubu.com/v3/document_image/29082791_d6fe81d5-f2a3-4b02-f8c6-63f110b33f7f.png"
+      style="width: 444px;"
+      crossorigin="anonymous"
+      class="image"
+    />
+  </li>
+  </ul>
+    
+    <div class="children"><ul class="node-list">
+    <li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Database choice</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Database Type</span><span>: SQL (Relational Database)</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Example</span><span>: IBM Db2 or Microsoft SQL Server</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Reasoning</span><span>:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Supplier data may require transactions and relationships with other entities like stocks. A relational database ensures data integrity and consistency.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Users data typically have a structured format with fixed attributes such as name, age, and contact number. A relational database is suitable for maintaining relationships between entities and ensuring data consistency.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Stock data also have a structured format with attributes like name, number, and details. A relational database allows for efficient querying and indexing of stock data.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Sales data may require complex queries and transaction handling. A relational database provides ACID properties (Atomicity, Consistency, Isolation, Durability) to ensure data integrity.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Transaction data often involves relationships with other entities like sales or products.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">CAP Theorem Focus</span><span>: Balanced</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Partitioning Strategy:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Efficient Data Partitioning:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Key Columns: Identify key columns that can be used for efficient data partitioning. For example:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Transactions: Date or customer ID could be used for partitioning.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Stocks: Supplier ID or product category could be used.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Range Partitioning: For time-based data like transactions, use range partitioning based on date ranges to evenly distribute data across partitions.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Hash Partitioning: For evenly distributed data, consider hash partitioning based on a hash of the partition key column to achieve uniform distribution.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Geographical Partitioning:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Need for Geographical Partitioning: If the system operates across multiple geographical regions with data residency requirements, geographical partitioning may be necessary.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Data Residency Compliance: Geographical partitioning allows storing data closer to users and complying with local regulations regarding data residency.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Replication Across Regions: Replicate data across geographical regions to ensure redundancy and availability in case of regional failures.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Scaling the System:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Horizontal Scaling: Utilize horizontal scaling to handle increased load and ensure high availability.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Sharding: Partition data horizontally across multiple database instances (shards) to distribute the workload evenly.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Replication: Replicate data across multiple database servers for fault tolerance and load balancing.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Load Balancing: Implement load balancing mechanisms to evenly distribute incoming requests among database servers.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Elasticity: Dynamically scale resources up or down based on demand using cloud-based infrastructure services.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Monitoring and Auto-scaling: Monitor system performance metrics and automatically adjust resources to maintain optimal performance and availability.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-purple">High-level design</span></div>
+    <ul class="image-list">
+    <li class="image-item">
+    <img
+      src="https://api2.mubu.com/v3/document_image/29082791_69354cb3-ba3e-4b71-b5ee-39f5bcaf47d8.png"
+      style="width: 881px;"
+      crossorigin="anonymous"
+      class="image"
+    />
+  </li>
+  </ul>
+    
+    <div class="children"><ul class="node-list">
+    <li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Components of the Inventory Management System:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">User Interface:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-blue">Web App</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Provides </span><span class=" text-color-blue">functionalities</span><span> for </span><span class=" text-color-blue">inventory management, order processing, and reporting.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Application Server:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Backend server responsible for processing user requests and business logic.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Implements APIs for inventory tracking, stock replenishment, and order fulfillment.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Database:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Stores all inventory data, user information, sales records, and transaction history.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Provides a relational database management system for efficient data storage and retrieval.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Inventory Management Module:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Manages inventory items, including adding new items, updating quantities, and tracking item details.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Handles stock alerts, low stock notifications, and stock level adjustments.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Order Processing Module:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Processes customer orders, updates inventory levels, and manages order fulfillment.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Handles order status updates, shipping details, and order tracking.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Reporting and Analytics Module:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Generates reports and analytics insights on inventory turnover, stock accuracy, and supplier performance.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Provides dashboards for monitoring key performance indicators and making informed decisions.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Integration Layer:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Facilitates integration with external systems such as sales channels, e-commerce platforms, and supplier databases.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Implements APIs for data synchronization and exchange of information between systems.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Authentication and Authorization:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Manages user authentication and authorization to ensure secure access to the system.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Implements role-based access control (RBAC) for controlling user permissions and privileges.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-purple">Request flows</span></div>
+    <ul class="image-list">
+    <li class="image-item">
+    <img
+      src="https://api2.mubu.com/v3/document_image/29082791_6977c4b3-67a8-4897-97e7-a2888c250a96.png"
+      style="width: 916px;"
+      crossorigin="anonymous"
+      class="image"
+    />
+  </li>
+  </ul>
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>In this refined sequence diagram:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Each </span><span class=" text-color-blue">action </span><span>performed by the user corresponds to interactions with specific modules such as </span><span class=" text-color-blue">Authentication, Inventory, Orders, and Stock</span><span>.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The User Interface module orchestrates the interactions between the user and the respective modules.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Each module handles its specific functionality, such as authentication, inventory management, order processing, and stock management.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The sequence concludes with the successful logout of the user from the system.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class=" text-color-purple">Detailed component design</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>1. Authentication Module:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The Authentication Module is responsible for validating user credentials and managing user sessions securely. It consists of a User Authentication Service and Session Management component.</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Responsibility:</span><span> The User Authentication Service validates user credentials against stored records in the database, ensuring only authorized users gain access. Session Management tracks user sessions and generates access tokens using JSON Web Tokens (JWT) for secure communication between the client and server.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Technologies</span><span> such as Node.js with Express and Passport.js are used for implementing the Authentication Service, while JWT is utilized for session management.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>how different types of system users, such as warehouse staff, managers, and administrators, can be managed effectively:</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>1.</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Role Description:</span><span> </span><span class=" text-color-blue">Warehouse staff </span><span>are responsible for day-to-day operations such as managing inventory, fulfilling orders, and updating stock levels.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Permissions</span><span>:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Read access to inventory data for checking stock levels and item details.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Write access to update stock levels, mark items as received, and process orders.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>2.</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Role Description:</span><span> </span><span class=" text-color-blue">Managers </span><span>oversee warehouse operations, monitor inventory performance, and make strategic decisions regarding stock management.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Permissions</span><span>:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Read and write access to inventory data for monitoring and making adjustments.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Access to reporting and analytics tools for analyzing inventory turnover, stock accuracy, and supplier performance.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>3.</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Role Description:</span><span class=" text-color-blue"> Administrators</span><span> have full control over the system, including user management, configuration settings, and system maintenance.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Permissions</span><span>:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Full access to all system functionalities, including user management, configuration settings, and system administration.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Technologies</span><span>:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>RBAC can be extended to include administrative roles with superuser privileges for managing users, roles, and permissions.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Access control mechanisms such as access control lists (ACLs) can be implemented to enforce additional security policies for administrative actions.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>2. Inventory Module:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The Inventory Module handles the</span><span class=" text-color-blue"> management of inventory items within the system</span><span>. It includes components for managing inventory data, stock alerts, and stock level adjustments.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Responsibility:</span><span> The Inventory Database stores inventory-related information such as product details, stock levels, and supplier information using a relational database like SQL Server. The Inventory Management Service implements business logic for inventory operations, ensuring accurate tracking of stock levels and handling stock replenishment. Microservices architecture can be utilized for scalability and modularity in the Inventory Module.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>3. Order Module:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The Order Module is responsible for processing customer orders and managing order fulfillment. It encompasses components for managing order information, processing orders, and updating inventory levels.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Responsibility:</span><span> The Order Database stores order details, customer information, and shipping details using a relational database like MySQL. The Order Processing Service orchestrates order processing workflows, interacting with inventory and shipping systems to ensure timely fulfillment.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Technologies</span><span> such as Python with Flask can be employed for developing the Order Processing Service, providing a robust and scalable solution.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>4. Stock Module:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The Stock Module is tasked with managing stock levels, tracking stock movements, and handling stock replenishment. It comprises components for managing stock data and implementing stock management operations.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Responsibility:</span><span> The Stock Database stores stock-related data, including stock levels, movements, and replenishment history, utilizing a NoSQL database like MongoDB for flexibility and scalability. The Stock Management Service implements business logic for stock management operations and generates stock alerts using GoLang for concurrent processing and real-time monitoring.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>5. Reporting &amp; Analytics Module:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>The Reporting &amp; Analytics Module generates insights and reports on inventory turnover, stock accuracy, and supplier performance. It consists of components for storing historical data and processing analytics.</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold">Responsibility:</span><span> The Reporting Database stores historical data for generating reports and analytics, leveraging technologies like Amazon Redshift for data warehousing and analytics. The Analytics Engine processes data to generate insights and visualizations, utilizing Apache Spark for distributed data processing and visualization. Microservices architecture can be employed for scalability and modular development in the Reporting &amp; Analytics Module.</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+  </ul>
+        
+      </body>
+    </html>
+  
