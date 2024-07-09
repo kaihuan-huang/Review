@@ -141,15 +141,4 @@ Training the TTS Model:
 Use the extracted features and emotional labels to train the Actor-Critic model, incorporating the emotional characteristics into the TTS system.
 Evaluation and Feedback:
 
-Evaluate the model using a separate test set from the same or different datasets to ensure the model generalizes well to new data.
-Collect real-time feedback from users to further refine the model and its emotional expressiveness.
-By utilizing these datasets, the project can leverage high-quality emotional speech data to develop a more emotionally expressive and natural-sounding TTS system using reinforcement learning.
 
-MELD (Multimodal EmotionLines Dataset)
-
-Description: Contains about 1,400 dialogues and 13,000 utterances from the TV show "Friends" with both audio and video data, labeled with emotions.
-Emotions Covered: Anger, disgust, sadness, joy, neutral, surprise, fear.
-Location and Access:
-The dataset is available on the GitHub repository.
-Link: MELD Dataset
-Reference: Devamanyu Hazarika et al., "ICON: Interactive Conversational Memory Network for Multimodal Emotion Detection"
