@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+        <title>Design Typeahead Suggestion</title>
+
+        <style>
+          html {
+            margin: 0;
+            padding: 0;
+          }
+
+          @font-face {
+  font-family: 'mm-iconfont';
+  src: url('data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAAVcAA0AAAAADSAAAAUHAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cGh4GVgCCShEICo0IigYLGAABNgIkAx4EIAWFLAd0G58KyI7S1LBNkiTFr/P/+6Z638ziLBkIQ8wrsxwEKUmBA4Dwlfarxzy8f+PP7b21ZXFa6IFleXg1a60AqO3LF3jX79fq2xMRxM/jDd1CpYX3FxcP1SqJuY6YNU3FUiQ2jtU11Up8H/EkAATA3TXpGgA83rt/vfLZBDABYQCGcAKRAAxAFXRBBnayKwD+gZ+nPyqFBjBygXL/DlvTIWjwo3cVuK8s9Sl++AEEEjlOjElBk3hilJIMpUKKY21LyxouyaqeWOQjuRrUI+IKdQAY7d9DwI5a04k3MIQFzgG2AOwIKjVqJIrYTsbHABOn6EE+VdOSA1gHO0CS9GBxkMQUvqKqmhP23oxVltyoYu+7Facuv129xJ6zAUpuNJw/Noer8zbl/7HRtyFEqCv9mw2LZ3VXCfF7ULGQwXk1E0zFkant5pHX+SO069xIZQFP7GuSunhzT+uPuaGY8wjz93lhNH9+VyPuCPieEDFvrGZaKEn8By0/Xn3v0RVHUmC89ZOhDlh3jGjeou4WwZ4VRP5wFNIcni96pNDC/qa/zwFLw/qDuH+eGGTtvRnLltyoYu67FceX3+5qwVyZ4I0Xa9BhhYiSnsziTU5ZezSSLTiSYq47FsUXHwcvFjNkwu3NBXzMKiJ/15BtsMQ1xgy5e7/7/fvd7t3pcudO16737nWjDd3v3u16ULnTY0/s1yP0/Scmui+Y0HDii4p2hF3JmehUsiKsiv/3cSrHVX6R/IJJdzYQ9r9pP26TdOc/zP6LnbKg9ZkfiIwv+XOzYQe94qkIvdk05Kn/lyMsmm8KPh98KGQVX3h25WBxRS+vXRVyjG6mfDgvpohyqM+M8zOu6OX0K63v9aXZ8EOl+hM99FbLkGeTpl4Nig85BNS98ahbdCwAz502byvV8h3Wg/UjvlpDaulHWXJ45xmpkR+vfH/c0lR+U6qRDFPFMasTvr+qVeUxFMVUJpGYeohQqEP2nPx5SKO4ooVwruVuCjlnklU9Hy5kSay6LNeiYqv7PjU71+oQWCgHdmB+QcB1t5V7+623sbeXXsGLgy+EbAxegxZ1XtyouW5Ld5F9q9GtCZ11Z2HDJg27dS5c0djIMyrvwL1Elbgmbkv3nTmpbTx5a58ZEeHlIiJmhEeUCw87OCNCZSJMkqK4nWJa+E70KviUNnlpz8pnolu0atLWPDd5Ye+6N0Latm/RSb7VtNuTc6v4gwfcUq568CBa6AgAAAnf3mlYOr2/U+eHZkg41F2gtCyzuA+AhmkRcXiKqLkGv0G0LKl6EWquoiXD9ua35Kvrb/DSahlAIBNQhmOQZyAoDJUTmoihl4lRjTZxhnkgcQ+BzH1GFGkwk5AdnosNwXEIHFUdQBaAiYRpZGJsHhMXZjJI3FUgc8+Bwv1kErqFfbIhLWZBaGw410AjbdshEgwyzrnAYKW8POuMJEDcicMjIvxjg+tAiRK5pAole26Fi4FOXHlGKTbQcPjt4uTbTV5w7sY13AgFgxNUVE4FuIWzBBXLVegDmsd7+xlrL3oZYbQ8lXKUI3lyPYaTxhIJmrG5rmK9vlSCoflfKeQabKRy8CCw7YjReZVGjvRc/8Gn3vEiLOr74PlAfv+1Q9VSHs/l6Tm/nMFjJuLiPNHTGI9vR5xALUQwYDyIsGDESSKZFFJJI908y2iXWzJq0Cj5RDdOO6nFE954+YIpXx1UcFoaLx+TN/EhpYPVt1cBAA==') format('woff2'),
+      url('data:application/font-woff;charset=utf-8;base64,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') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.mm-iconfont::before {
+  font-family: 'mm-iconfont', sans-serif !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+          .mention[data-type='1']::before,
+          .mention[data-type='3']::before,
+          .mention[data-type='8']::before,
+          .mention[data-type='11']::before,
+          .mention[data-type='12']::before,
+          .mention[data-type='15']::before,
+          .mention[data-type='16']::before {
+            content: '\e62f';
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -4px;
+            font-size: inherit;
+          }
+          .mention[data-type='3']::before {
+            content: '\e62c';
+          }
+          .mention[data-type='8']::before {
+            content: '\e62d';
+          }
+          .mention[data-type='11']::before {
+            content: '\e62b';
+          }
+          .mention[data-type='12']::before {
+            content: '\e62a';
+          }
+          .mention[data-type='15']::before {
+            content: '\e62e';
+          }
+          .mention[data-type='22']::before {
+            content: '\e602';
+          }
+
+          body {
+            margin: 50px 20px;
+            padding: 0;
+            color: #333;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'PingFang SC',
+                  Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, 黑体, Heiti, sans-serif,
+                  SimSun, 宋体, serif,
+                  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+          }
+
+          body.narrow {
+            max-width: 790px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+
+          .title {
+            min-height: 40px;
+            padding-left: 10px;
+            padding-bottom: 24px;
+            margin-bottom: 20px;
+            line-height: 40px;
+            font-size: 26px;
+            font-weight: 500;
+            border-bottom: 1px solid #e5e6e8;
+          }
+
+          .node-list {
+            margin: 0 0 0 28px;
+            padding: 0;
+            list-style: none;
+          }
+
+          .node {
+            position: relative;
+          }
+
+          .node.drill-node > .content {
+            margin-bottom: 15px;
+            font-size: 20px;
+            line-height: 28px;
+          }
+
+          .node.drill-node > .note {
+            margin-bottom: 10px;
+          }
+
+          .content {
+            min-height: 24px;
+            padding-top: 2px;
+            padding-bottom: 3px;
+            line-height: 24px;
+            font-size: 16px;
+          }
+
+          .note {
+            position: relative;
+            padding-bottom: 2px;
+            line-height: 22px;
+            font-size: 14px;
+            color: #888;
+            white-space: pre-wrap;
+          }
+
+          .content > *,
+          .note > * {
+            padding-top: 2px;
+            padding-bottom: 2px;
+          }
+
+          .note:empty {
+            padding-bottom: 0;
+          }
+
+          .node.finished .content,
+          .node.finished .note {
+            opacity: 0.5;
+          }
+
+          .node.finished > .content {
+            text-decoration: line-through;
+          }
+
+          .heading1 > .content {
+            min-height: 34px;
+            line-height: 34px;
+            font-size: 24px;
+            font-weight: 500;
+          }
+
+          .heading2 > .content {
+            min-height: 30px;
+            line-height: 30px;
+            font-size: 21px;
+            font-weight: 500;
+          }
+
+          .heading3 > .content {
+            min-height: 27px;
+            line-height: 27px;
+            font-size: 19px;
+            font-weight: 500;
+          }
+
+          .mention {
+            padding-left: 2px;
+            padding-right: 2px;
+            color: #5856d5;
+            word-break: break-all;
+            text-decoration: none;
+          }
+
+          .content-link {
+            color: unset;
+            opacity: 0.6;
+            word-break: break-all;
+          }
+
+          .tag {
+            text-decoration: underline;
+            opacity: 0.6;
+          }
+
+          .bold {
+            font-weight: bold;
+          }
+
+          .italic {
+            font-style: italic;
+          }
+
+          .underline {
+            text-decoration: underline;
+          }
+
+          .content .highlight-red,
+          .highlight-red > .content > * {
+            background-color: #fbbfbc;
+          }
+
+          .content .highlight-yellow,
+          .highlight-yellow > .content > * {
+            background-color: #f8e6ab;
+          }
+
+          .content .highlight-blue,
+          .highlight-blue > .content > * {
+            background-color: #bacefd;
+          }
+
+          .content .highlight-cyan,
+          .highlight-cyan > .content > * {
+            background-color: #a9efe6;
+          }
+
+          .content .highlight-pink,
+          .highlight-pink > .content > * {
+            background-color: #fdddef;
+          }
+
+          .content .highlight-olive,
+          .highlight-olive > .content > * {
+            background-color: #bbbfc4;
+          }
+
+          .content .highlight-grey,
+          .highlight-grey > .content > * {
+            background-color: #bbbfc4;
+          }
+
+          .text-color-red {
+            color: #dc2d1e;
+          }
+
+          .text-color-yellow {
+            color: #ffaf38;
+          }
+
+          .text-color-green {
+            color: #75c940;
+          }
+
+          .text-color-blue {
+            color: #3da8f5;
+          }
+
+          .text-color-purple {
+            color: #797ec9;
+          }
+
+          .bullet {
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            border-radius: 9px;
+          }
+
+          .node.collapsed > .bullet {
+            background-color: #dee0e3;
+          }
+
+          .heading1 > .bullet {
+            top: 10px;
+          }
+
+          .heading2 > .bullet {
+            top: 8px;
+          }
+
+          .heading3 > .bullet {
+            top: 6px;
+          }
+
+          .bullet-dot {
+            position: absolute;
+            left: 6px;
+            top: 6px;
+            width: 6px;
+            height: 6px;
+            background-color: rgb(100, 106, 115);
+            border-radius: 3px;
+          }
+
+          .image-list {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+          }
+
+          .image-item {
+            padding-top: 2px;
+            padding-bottom: 8px;
+          }
+
+          .image {
+            display: block;
+            max-width: 100%;
+          }
+
+          .children {
+            position: relative;
+          }
+
+          .note::before,
+          .image-list::before,
+          .children::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -17px;
+            width: 1px;
+            height: 100%;
+            background-color: #dee0e3;
+          }
+
+          .node.drill-node > .note::before,
+          .node.drill-node > .image-list::before,
+          .node.drill-node > .children::before,
+          body.noline .note::before,
+          body.noline .image-list::before,
+          body.noline .children::before {
+            display: none;
+          }
+
+          .node.drill-node > .note,
+          .node.drill-node > .content,
+          .node.drill-node > .image-list,
+          .node.drill-node > .children {
+            margin-left: 10px;
+          }
+
+          body.noline .node-list {
+            margin-right: 20px;
+          }
+
+          .publish {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+          }
+
+          .publish-link {
+            color: #4694FF;
+          }
+
+          .node .mention.mm-iconfont::before {
+            content: '\e601';
+          }
+
+          .node .mention.mm-iconfont {
+             color: #5856d5;
+          }
+
+          @media print {
+            body {
+              margin-top: 0;
+              margin-bottom: 0;
+            }
+          }
+
+          @page {
+            margin-left: 0.25in;
+            margin-right: 0.25in;
+            margin-top: 0.5in;
+            margin-bottom: 0.5in;
+          }
+        </style>
+      </head>
+      <body >
+        <div class="title">Design Typeahead Suggestion</div>
+        <ul class="node-list">
+    <li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><a class="content-link bold text-color-purple" data-id="aH0t2dLR9X" target="_blank" spellcheck="false" rel="noreferrer" href="https://codemia.io/system-design/design-typeahead-suggestion/solutions/sbib9q/My-Solution-for-Design-Typeahead-Suggestion-with-Score-810"><span class="content-link-text">System requirements</span></a></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node heading2">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-green">Functional:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>我将专注于broswer为客户端。我们可以稍后将其扩展到移动设备上。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>当用户输入a letter时，Typeahead 服务会找到relevant words。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Top priority word 将作为auto complete的候选词。如果此时用户按下 Tab 键，该词将被使用。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>一些（default 10，but configurable ）高优先级的词会列在用户正在输入的表单下方，以便用户从中选择一个词。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>我假设作为该服务后端一部分的搜索引擎有一种方法可以根据单词的搜索频率来排序。个性化应该被用作这种排序的一部分。</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading2">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-green">Non-Functional:</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Response time非常重要。在用户输入一个字母后，Typeahead 建议应在 100 毫秒内显示。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Scalability: expect 100M DAU. </span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>Availability：可以接受不对可用性过于关注。如果 Typeahead 服务短时间不可用，用户 not suffer critical consequences.  。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>我假设有一个网络服务可以返回个性化的（通过电子邮件地址）1000 个最可能的搜索词列表。由于这是一个外部网络服务，我们将考虑该服务宕机的错误场景。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>另一种错误场景是 Typeahead 服务不可用。我们将确保即使服务器不可用，客户端也能正常操作。</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-purple">Capacity estimation</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>假设每日活跃用户数（DAU）为1亿，月活跃用户数（MAU）为3亿。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>在高峰期，我们考虑每秒2500万个请求。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>假设我们为每个用户存储100个最可能的搜索词，另外存储1000个一般最可能的搜索词。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>3亿用户 * 100 = 30GB的数据。随着用户数量增加，可能在两年内变成约60GB。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>为了扩展性和性能，我认为NoSQL数据库（如MongoDB）是数据存储的一个不错选择。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>对于这个数据集，我们不需要复杂的连接操作，因此不需要依赖关系数据库的丰富查询功能。</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-purple">API Design</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>高性能的关键在于客户端（浏览器）拥有足够的信息来进行 Typeahead 推荐，而不需要每次用户输入时都询问服务器。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>客户端将调用以下接口：</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>- `get_words(priority_from, priority_to)`</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>- `get_personalized_words(priority_from, priority_to, user_ID)`</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>假设流行词按优先级排序，从0到1000。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>在页面加载时，客户端会请求最流行的词汇，例如前1000个。这些词汇会针对用户进行个性化处理。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>如果客户端有带宽或资源方面的顾虑，它可以选择一次请求较少数量的词汇（例如先请求前100个），然后再请求更多。这类似于分页。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>但我预计大多数客户端会请求所有词汇（例如1000个）。如果每个词平均有10个字母，总共约10KB。大多数现代浏览器和网络能够发送和接收这么多数据。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>返回的数据（词汇）可以以简单的数组形式传输，使用JSON格式。</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-purple">Database Design</span></div>
+    
+    
+    
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-purple">High-level Design</span></div>
+    <ul class="image-list">
+    <li class="image-item">
+    <img
+      src="https://api2.mubu.com/v3/document_image/29082791_a974a85a-ac26-4371-9685-33c31460482b.png"
+      style="width: 439px;"
+      crossorigin="anonymous"
+      class="image"
+    />
+  </li>
+  </ul>
+    
+    <div class="children"><ul class="node-list">
+    <li class="node heading3">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>页面加载时，客户端调用 get_words() API。</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>CDN 将会非常重要。它caches the most common search work（非个性化）。它能够非常快速地返回常见词（例如在10毫秒的量级内）。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>客户端会将候选词存储在一个 </span><span class=" text-color-green">Trie（</span><span>字典树）数据结构中。让客户端在用户输入时quickly narrow down the number of candidates words。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>在后台，客户端还会调用 get_personalized_words()。这will hit the Load Balancer directly。这可能需要更多时间（例如在百毫秒甚至秒的量级内）。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>词服务器（Words Server）在第一次看到用户时，需要向外部搜索服务请求个性化词列表。一旦收到这些词，它们将存储在数据库中（用于永久permanent存储）和 Redis 中（用于quick访问）。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>一旦个性化词汇到达，客户端会将这些词添加到 Trie 数据结构中。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>这个 Trie 数据结构可以作为客户端缓存本地存储在客户端中。</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-purple">Request Flow</span></div>
+    
+    
+    
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-purple">Detailed Component design</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>一旦构建了 Trie（前缀树），它就能够快速查找可能的单词。例如：</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>a-p-p-l-e</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>           -i-c-a-t-i-o-n</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>这个 Trie 在用户输入第一个字母 “a” 时提供了三种选择：app、apple 和 application。它能迅速排除以其他字母开头的单词。</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>如果客户端在内存中有这个 Trie 结构，它可以快速遍历并显示单词补全候选项。因此，客户端的任务是维护这个 Trie（构建并存储在客户端存储中）。服务器的任务是通过 CDN 和单词服务器高效地将这些信息提供给客户端。</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-purple">Trade-Offs/ Tech Choices</span></div>
+    
+    
+    <div class="children"><ul class="node-list">
+    <li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>一个有趣的选择是由谁来合成个性化单词列表和通用单词列表，以创建一个完整的单词列表。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>我采用的方法是让客户端接收两个独立的列表并进行合成。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>另一种方法是由单词服务器创建合并后的列表并返回给客户端。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>我选择第一种方法主要是为了提高响应时间。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>通用列表可以非常快速地提供给客户端。因为这是所有用户都使用的相同列表，所以我们可以将其简单地存储在 CDN 中。靠近客户端的 CDN 可以快速返回这个列表。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>另一方面，生成个性化列表需要一些时间，特别是当单词服务器需要联系外部搜索服务来获取它时。</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>因此，最好先将通用列表提供给客户端。个性化列表可以在稍后时间到达。此时，客户端可以将个性化单词添加到 Trie 数据结构中，而用户不会注意到任何变化。</span></div>
+    
+    
+    
+  </li>
+  </ul></div>
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-purple">Failure Scenarios/Bottlenecks</span></div>
+    
+    
+    
+  </li>
+<li class="node">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span>这种设计在网络丢失时能优雅地处理故障，客户端存储的 Trie 结构保证其功能正常，而浏览器的 Service Worker 可以定期更新候选单词，确保离线时 Trie 依然是最新的。</span></div>
+    
+    
+    
+  </li>
+<li class="node heading1">
+    <div class="bullet">
+    <div class="bullet-dot"></div>
+  </div>
+    <div class="content mm-editor" ><span class="bold text-color-purple">Future Improvements</span></div>
+    
+    
+    
+  </li>
+  </ul>
+        <div class="publish">
+        <span>以上内容整理于</span>
+        <a target="_blank" class="publish-link" href="http://rhaegar://mubu.com?s=export-pdf">
+          幕布文档
+        </a>
+      </div>
+      </body>
+    </html>
+  
