@@ -1,0 +1,848 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JS刷题集</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c3cd42ef-0ac9-4bab-af06-538f3c7642b1" class="page sans"><header><h1 class="page-title">JS刷题集</h1><p class="page-description"></p></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Coding questions</strong></summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="77d6fdce-5701-45ff-ad70-9ca8c34ec52d" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">//Make this work:
+duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
+//Create a for loop that iterates up to 100 while outputting “fizz” at multiples of 3, “buzz” at multiples of 5 and “fizzbuzz” at multiples of 3 and 5
+//What will be returned by each of these?
+console.log(&quot;hello&quot; || &quot;world&quot;)
+console.log(&quot;foo&quot; &amp;&amp; &quot;bar&quot;)
+//Write an immediately invoked function expression (IIFE)</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong><a href="https://www.notion.so/ES6-6cb46fd203fc48f3bc5f2d43a7e4d26e?pvs=21">1. What&#x27;s the output?</a></strong></summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e64d9b46-8ece-4249-b62b-6fa6e9c6759c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function sayHi() {
+  console.log(name);
+  console.log(age);
+  var name = &#x27;Lydia&#x27;;
+  let age = 21;
+}
+
+sayHi();</code></pre><ul id="bad48155-d8fc-4b89-9b5c-a64200d41620" class="bulleted-list"><li style="list-style-type:disc">A: <code>Lydia</code> and <code>undefined</code></li></ul><ul id="deedabfd-d461-4625-be80-79bf94a6e377" class="bulleted-list"><li style="list-style-type:disc">B: <code>Lydia</code> and <code>ReferenceError</code></li></ul><ul id="2c4926e3-250e-46be-88ed-73d38fd75f3f" class="bulleted-list"><li style="list-style-type:disc">C: <code>ReferenceError</code> and <code>21</code></li></ul><ul id="22df16fd-83c0-4ba4-9889-a60c386156f8" class="bulleted-list"><li style="list-style-type:disc">D: <code>undefined</code> and <code>ReferenceError</code></li></ul><ul id="5097a9ad-6019-457a-a725-64d6d6c556d1" class="toggle"><li><details open=""><summary><strong>Answer</strong></summary><p id="a2173fc3-9cd1-4d0a-ade6-94cb4b4a380d" class=""><strong>Answer: D</strong></p><ul id="1e864260-94e9-4adf-9815-7296bab0cdf3" class="bulleted-list"><li style="list-style-type:disc"><code>var</code>声明的变量会被提升Hoisting，并且在初始化之前默认值为<code>undefined</code>。</li></ul><ul id="ac1c106c-274a-4b45-a6d9-60223e7e6cc3" class="bulleted-list"><li style="list-style-type:disc"><code>let</code> const 声明的变量也会被提升Hoisting，但在初始化之前访问它们会导致<code>ReferenceError</code>，这是由于暂时性死区Temporal Dead Zone, TDZ的存在。</li></ul><p id="363f6fbd-1c19-43d9-9166-6383dfc80989" class="">Within the function, we first declare the <code>name</code> variable with the <code>var</code> keyword. This means that the variable gets hoisted (memory space is set up during the creation phase) with the default value of <code>undefined</code>, until we actually get to the line where we define the variable. We haven&#x27;t defined the variable yet on the line where we try to log the <code>name</code> variable, so it still holds the value of <code>undefined</code>.</p><p id="62aead79-8572-44f9-b7f9-b69db334f4ae" class="">Variables with the <code>let</code> keyword (and <code>const</code>) are hoisted, but unlike <code>var</code>, don&#x27;t get <em>initialized</em>. They are not accessible before the line we declare (initialize) them. This is called the &quot;temporal dead zone&quot;. When we try to access the variables before they are declared, JavaScript throws a <code>ReferenceError</code>.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>2. What&#x27;s the output? </strong><code>var</code>和<code>let</code>在作用域和异步操作中的不同行为</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="43f5978a-e023-4354-a4a8-02d99fdc4316" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">for (var i = 0; i &lt; 3; i++) {
+  setTimeout(() =&gt; console.log(i), 1);
+}
+
+for (let i = 0; i &lt; 3; i++) {
+  setTimeout(() =&gt; console.log(i), 1);
+}</code></pre><ul id="e2ba612f-50b4-419b-8382-9bfd54f890f1" class="bulleted-list"><li style="list-style-type:disc">A: <code>0 1 2</code> and <code>0 1 2</code></li></ul><ul id="7b7858f8-bbba-4117-af0f-2d7e28549e55" class="bulleted-list"><li style="list-style-type:disc">B: <code>0 1 2</code> and <code>3 3 3</code></li></ul><ul id="2e147531-ee30-4f1b-8dc0-ec0a467b6a3c" class="bulleted-list"><li style="list-style-type:disc">C: <code>3 3 3</code> and <code>0 1 2</code></li></ul><ul id="58b37f73-3708-4f59-bb76-d83656111231" class="toggle"><li><details open=""><summary><strong>Answer</strong></summary><p id="243a9553-8813-4c47-aecb-ae507e99f948" class=""><strong>Answer: C</strong></p><ul id="e4bde245-fd5a-4f84-bb1e-8e0d5a808001" class="bulleted-list"><li style="list-style-type:disc"><code>var</code>声明的变量是<strong>函数作用域</strong>或<strong>全局作用域</strong>，并且会被提升。</li></ul><ul id="bdee88eb-c84f-4bc5-9798-83ded47bc15e" class="bulleted-list"><li style="list-style-type:disc">在这个循环中，变量<code>i</code>在每次迭代时被共享，并且在循环结束后，它的值是3。</li></ul><ul id="fc7f62d2-da7a-44cf-867c-28181d3bbd5a" class="bulleted-list"><li style="list-style-type:disc"><code>setTimeout</code>是一个异步函数，它的回调会在所有同步代码执行完之后才执行。</li></ul><ul id="e7bd239d-cff9-47a4-bd15-7e586b6363fd" class="bulleted-list"><li style="list-style-type:disc">当<code>setTimeout</code>的回调执行时，循环已经完成，变量<code>i</code>的最终值是3。</li></ul><p id="9bdd736b-cf77-4e56-ace2-6e4177c0ec42" class="">Because of the event queue in JavaScript, the <code>setTimeout</code> callback function is called <em>after</em> the loop has been executed. Since the variable <code>i</code> in the first loop was declared using the <code>var</code> keyword, this value was global. During the loop, we incremented the value of <code>i</code> by <code>1</code> each time, using the unary operator <code>++</code>. By the time the <code>setTimeout</code> callback function was invoked, <code>i</code> was equal to <code>3</code> in the first example. </p><ul id="bc583468-4d19-488f-b0b6-b037f427e773" class="bulleted-list"><li style="list-style-type:disc"><code>let</code>声明的变量是<strong>块作用域</strong>（block-scoped），每次迭代都会创建一个新的块作用域。</li></ul><ul id="420a2c85-a357-401d-a354-edc5152cbeef" class="bulleted-list"><li style="list-style-type:disc">在每次迭代中，<code>i</code>的值都是独立的，并且在异步回调执行时，<code>i</code>保持了当前的迭代值。</li></ul><ul id="c5089140-cf56-4412-83db-8224fe334ef4" class="bulleted-list"><li style="list-style-type:disc">因此，<code>setTimeout</code>的回调在每次迭代时捕获了不同的<code>i</code>值。</li></ul><p id="4e93a706-883d-4ecf-8375-3b16bf184f5d" class="">In the second loop, the variable <code>i</code> was declared using the <code>let</code> keyword: variables declared with the <code>let</code> (and <code>const</code>) keyword are block-scoped (a block is anything between <code>{ }</code>). During each iteration, <code>i</code> will have a new value, and each value is scoped inside the loop.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>3. </strong>JavaScript中<code>this</code>关键字的行为，特别是普通函数和箭头函数之间的区别</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cb777f83-b0d7-451a-b92e-00d47177edc6" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const shape = {
+  radius: 10,
+  diameter() {
+    return this.radius * 2;
+  },
+  perimeter: () =&gt; 2 * Math.PI * this.radius,
+};
+
+console.log(shape.diameter());
+console.log(shape.perimeter());</code></pre><ul id="da777a2f-be24-4fda-a362-c246d57ff249" class="bulleted-list"><li style="list-style-type:disc">A: <code>20</code> and <code>62.83185307179586</code></li></ul><ul id="b7d6a102-1ec9-48c6-8b3c-1a1490030d6d" class="bulleted-list"><li style="list-style-type:disc">B: <code>20</code> and <code>NaN</code></li></ul><ul id="45977559-39eb-4499-b349-952d5711c761" class="bulleted-list"><li style="list-style-type:disc">C: <code>20</code> and <code>63</code></li></ul><ul id="241c84fc-3a27-4fda-98c5-c58fdaa556e7" class="bulleted-list"><li style="list-style-type:disc">D: <code>NaN</code> and <code>63</code></li></ul><ul id="2eeacb4d-38f1-44b0-9b8b-b58388c12df0" class="toggle"><li><details open=""><summary><strong>Answer</strong></summary><p id="521251a9-9d76-4cde-9279-92dd6472753e" class=""><strong>Answer: B</strong></p><ul id="47dca735-f707-402b-8cb1-ae8a97ddb016" class="bulleted-list"><li style="list-style-type:disc">普通函数<code>diameter</code>可以正确地访问到对象的属性，因为它的<code>this</code>指向对象本身。</li></ul><ul id="d12443af-85e0-41e1-a40e-60c8b4bc5ad2" class="bulleted-list"><li style="list-style-type:disc">箭头函数<code>perimeter</code>的<code>this</code>不是指向对象本身，而是指向它定义时的词法作用域，在这里是全局对象，因此访问不到对象的属性，导致<code>NaN</code>。</li></ul><p id="9e907892-1d60-43ba-ba6e-3b204e20cb09" class=""><strong>全局对象</strong>：在浏览器中是<code>window</code>对象，在Node.js中是<code>global</code>对象。</p><p id="63dd8c7d-40a3-4704-bb55-7d5acd0ee70b" class="">Note that the value of <code>diameter</code> is a regular function, whereas the value of <code>perimeter</code> is an arrow function.</p><p id="fc6269f8-0459-462b-b882-e87ee1e96b7b" class="">With arrow functions, the <code>this</code> keyword refers to its current surrounding scope, unlike regular functions! This means that when we call <code>perimeter</code>, it doesn&#x27;t refer to the shape object, but to its surrounding scope (window for example).</p><p id="4ec68035-2f2e-4e83-b2fd-5497c0886d20" class="">Since there is no value <code>radius</code> in the scope of the arrow function, <code>this.radius</code> returns <code>undefined</code> which, when multiplied by <code>2 * Math.PI</code>, results in <code>NaN</code>.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>4. What&#x27;s the output?一元操作符Unary Plus Operator和逻辑操作符Logical NOT Operator</strong></summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="759820e4-ae02-4a62-9e60-459c6d80078e" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">+true;
+!&#x27;Lydia&#x27;;</code></pre><ul id="69d8c23a-303d-4c40-a5db-96f3e5dae4d3" class="bulleted-list"><li style="list-style-type:disc">A: <code>1</code> and <code>false</code></li></ul><ul id="4074d74b-00b2-49cf-840d-216ba4fe63a3" class="bulleted-list"><li style="list-style-type:disc">B: <code>false</code> and <code>NaN</code></li></ul><ul id="acc3e129-b789-42c0-83d0-f571c2d427ef" class="bulleted-list"><li style="list-style-type:disc">C: <code>false</code> and <code>false</code></li></ul><ul id="eb8eae7a-1f44-4254-868f-13e22e4555a5" class="toggle"><li><details open=""><summary><strong>Answer</strong></summary><p id="e2f9d362-6d51-4b62-b077-a31b0cff550b" class=""><strong>Answer: A</strong></p><ul id="30803b86-7ea3-429d-aed4-656143326d07" class="bulleted-list"><li style="list-style-type:disc">一元加操作符<code>+</code>将<code>true</code>转换为数字<code>1</code>。</li></ul><ul id="c3bb051e-4564-4576-8127-778dfb52af35" class="bulleted-list"><li style="list-style-type:disc">逻辑非操作符<code>!</code>将非空字符串<code>&#x27;Lydia&#x27;</code>转换为布尔值<code>true</code>，然后取反得到<code>false</code>。</li></ul><p id="753a1001-5bf4-459d-9bea-32d8d0edff75" class="">The unary plus tries to convert an operand to a number. <code>true</code> is <code>1</code>, and <code>false</code> is <code>0</code>.</p><p id="1ceca501-b6e9-4da6-b388-162279f29fa0" class="">The string <code>&#x27;Lydia&#x27;</code> is a truthy value. What we&#x27;re actually asking, is &quot;Is this truthy value falsy?&quot;. This returns <code>false</code>.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">5 JavaScript对象属性访问的不同方式（点操作符和方括号操作符）以及类型转换的细节。</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="571947b9-14a2-4fea-b018-bc989ad82668" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const bird = {
+  size: &#x27;small&#x27;,
+};
+
+const mouse = {
+  name: &#x27;Mickey&#x27;,
+  small: true,
+};</code></pre><ul id="56a0c27f-23c3-4be6-8f5d-3febd78143fc" class="bulleted-list"><li style="list-style-type:disc">A: <code>mouse.bird.size</code> is not valid</li></ul><ul id="fa464e6d-99da-4097-b95e-ba2cb752d95b" class="bulleted-list"><li style="list-style-type:disc">B: <code>mouse[bird.size]</code> is not valid</li></ul><ul id="b577d101-ad30-4aa9-935f-2cb12d466161" class="bulleted-list"><li style="list-style-type:disc">C: <code>mouse[bird[&quot;size&quot;]]</code> is not valid</li></ul><ul id="70b08014-63c9-4399-bc20-9578e7ec9f6e" class="bulleted-list"><li style="list-style-type:disc">D: All of them are valid</li></ul><ul id="4d7d17ef-3872-4c59-965d-86de6f564edb" class="toggle"><li><details open=""><summary><strong>Answer</strong></summary><p id="2f6c8794-74e7-4cb1-ab5e-e51e67eff2d3" class=""><strong>Answer: A</strong></p><ul id="aa594a87-2dab-49d2-88fa-896bf97a07e3" class="bulleted-list"><li style="list-style-type:disc"><code>mouse.bird.size</code>是不合法的，因为<code>mouse</code>对象没有<code>bird</code>属性，访问<code>undefined.size</code>会抛出错误。</li></ul><ul id="230579ec-f75a-4f21-a571-35c304cda90b" class="bulleted-list"><li style="list-style-type:disc"><code>mouse[bird.size]</code>和<code>mouse[bird[&quot;size&quot;]]</code>是合法的，因为<code>bird.size</code>和<code>bird[&quot;size&quot;]</code>都返回字符串<code>&#x27;small&#x27;</code>，并且<code>mouse</code>对象有一个名为<code>small</code>的属性，其值为<code>true</code>。</li></ul><p id="3cdf58d8-c53e-4503-86f2-19a9239e0764" class="">In JavaScript, all object keys are strings (unless it&#x27;s a Symbol). Even though we might not <em>type</em> them as strings, they are always converted into strings under the hood.</p><p id="c840a47c-483a-4784-b078-6ebdc3d59f46" class="">JavaScript interprets (or unboxes) statements. When we use bracket notation, it sees the first opening bracket <code>[</code> and keeps going until it finds the closing bracket <code>]</code>. Only then, it will evaluate the statement.</p><p id="287d2c7b-bb07-4663-a3a0-bdc5a14da974" class=""><code>mouse[bird.size]</code>: First it evaluates <code>bird.size</code>, which is <code>&quot;small&quot;</code>. <code>mouse[&quot;small&quot;]</code> returns <code>true</code></p><p id="51102510-cbb4-48ae-9d50-ae07c2af55e8" class="">However, with dot notation, this doesn&#x27;t happen. <code>mouse</code> does not have a key called <code>bird</code>, which means that <code>mouse.bird</code> is <code>undefined</code>. Then, we ask for the <code>size</code> using dot notation: <code>mouse.bird.size</code>. Since <code>mouse.bird</code> is <code>undefined</code>, we&#x27;re actually asking <code>undefined.size</code>. This isn&#x27;t valid, and will throw an error similar to <code>Cannot read property &quot;size&quot; of undefined</code></p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">6 all objects interact by <em>reference</em></summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8af5cbb6-b2c1-43a8-be15-82d1b62c2533" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let c = { greeting: &#x27;Hey!&#x27; };
+let d;
+
+d = c;
+c.greeting = &#x27;Hello&#x27;;
+console.log(d.greeting);</code></pre><ul id="b19ad8c7-f03e-4c04-aa45-af1915d9e337" class="bulleted-list"><li style="list-style-type:disc"><code>c</code> 是一个对象，初始值为 <code>{ greeting: &#x27;Hey!&#x27; }</code>。</li></ul><ul id="bc8c6e63-65bd-4447-8d99-9289f41980f4" class="bulleted-list"><li style="list-style-type:disc"><code>d</code> 被赋值为 <code>c</code>，这意味着 <code>d</code> 和 <code>c</code> 指向同一个对象。</li></ul><ul id="106a73df-e1f3-407c-bcca-0e7876db24b4" class="bulleted-list"><li style="list-style-type:disc">修改 <code>c.greeting</code> 也会影响 <code>d</code>，因为它们引用的是同一个对象。</li></ul><ul id="ebded98f-f902-406e-a6ef-11a8e2e35fb1" class="bulleted-list"><li style="list-style-type:disc">所以 <code>console.log(d.greeting)</code> 输出 <code>Hello</code>。</li></ul><p id="49dafb79-2b7d-4141-acbd-6a7f654f167a" class="">In JavaScript, all objects interact by <em>reference</em> when setting them equal to each other.</p><p id="c02bded6-5759-4a87-bba0-d17f1ed98683" class="">First, variable <code>c</code> holds a value to an object. Later, we assign <code>d</code> with the same reference that <code>c</code> has to the object.</p><p id="0190434a-f30f-4b1f-92f1-32ae6f283b3c" class="">When you change one object, you change all of them</p><figure id="55fe79aa-d0b4-4364-bcd2-1fef4701fa10" class="image"><a href="https://camo.githubusercontent.com/90d7e0a800f423e8e042a55252a744a59cafe8d976d3126da45e0ffa8259078d/68747470733a2f2f692e696d6775722e636f6d2f6b6f356b3066732e706e67"><img style="width:200px" src="https://camo.githubusercontent.com/90d7e0a800f423e8e042a55252a744a59cafe8d976d3126da45e0ffa8259078d/68747470733a2f2f692e696d6775722e636f6d2f6b6f356b3066732e706e67"/></a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">7 Equality operator == only value &amp; Strict equality operator === value <em>and</em> type</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="73ee380e-e17a-4b42-b696-93c67ccf2226" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let a = 3;
+let b = new Number(3);
+let c = 3;
+
+console.log(a == b);
+console.log(a === b);
+console.log(b === c);</code></pre><ul id="7dea1478-49f2-40b8-b0be-2a034b03226b" class="toggle"><li><details open=""><summary><strong>Answer</strong></summary><p id="706cdb5a-1f6d-4e47-983b-651fd3596de5" class=""><code>true</code> <code>false</code> <code>false</code><br/><br/><code>new Number()</code> is a built-in function constructor. Although it looks like a number, it&#x27;s not really a number: it has a bunch of extra features and is an object.<br/>When we use the <br/><code>==</code> operator (Equality operator), it only checks whether it has the same <em>value</em>. They both have the value of <code>3</code>, so it returns <code>true</code>.</p><p id="6db466da-2fc7-4940-add6-543c487515f5" class="">However, when we use the <code>===</code> operator (Strict equality operator), both value <em>and</em> type should be the same. It&#x27;s not: <code>new Number()</code> is not a number, it&#x27;s an <strong>object</strong>. Both return <code>false.</code></p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">8 JavaScript中的classes和static method的使用，especially how to define it and call the static method</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0bb5bd51-f5c5-4241-8096-6dc720887f78" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">class Chameleon {
+  static colorChange(newColor) {
+    this.newColor = newColor;
+    return this.newColor;
+  }
+
+  constructor({ newColor = &#x27;green&#x27; } = {}) {
+    this.newColor = newColor;
+  }
+}
+
+const freddie = new Chameleon({ newColor: &#x27;purple&#x27; });
+console.log(freddie.colorChange(&#x27;orange&#x27;));</code></pre><ul id="bf09d82d-f7c8-4425-a48d-d71406b0b565" class="toggle"><li><details open=""><summary>Answer</summary><p id="ac34bebe-b6db-4271-92ae-fa0aded24d90" class="">Type Error</p><ul id="8531ab5e-da51-4f22-a68a-649a072b0ed9" class="bulleted-list"><li style="list-style-type:disc"><strong>静态方法（Static Method）</strong>：<ul id="813598f1-3ae9-4225-ae4e-9864729bd1bb" class="bulleted-list"><li style="list-style-type:circle">使用<code>static</code>关键字定义的<code>colorChange</code>方法是一个静态方法。</li></ul><ul id="3b901d7a-c7e6-4a94-8f7f-4292bf22538e" class="bulleted-list"><li style="list-style-type:circle">静态方法只能通过类本身调用，而不是通过类的实例调用。</li></ul></li></ul><ul id="02824fd1-cfc9-4f01-80fb-da04877b5e87" class="bulleted-list"><li style="list-style-type:disc"><strong>实例方法（Instance Method）</strong>：<ul id="8125907f-aa55-4df5-931a-d3d85000108f" class="bulleted-list"><li style="list-style-type:circle">构造函数<code>constructor</code>用于初始化实例属性。</li></ul><ul id="48c8aeaa-5e5c-4941-b851-2a648532ad07" class="bulleted-list"><li style="list-style-type:circle">通过实例调用的方法是实例方法。</li></ul></li></ul><p id="13d5c0fc-75a9-4297-a84b-a88890517e6b" class="">The <code>colorChange</code> function is static. Static methods are designed to live only on the constructor in which they are created, and cannot be passed down to any children or called upon class instances. Since <code>freddie</code> is an instance of class Chameleon, the function cannot be called upon it. A <code>TypeError</code> is thrown.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">9 JavaScript中变量作用域、未声明变量以及严格模式的使用</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6aa99662-44f1-426f-9b90-b6bdb3adeea2" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let greeting;
+greetign = {}; // Typo!
+console.log(greetign);</code></pre><ul id="fbc3b9dd-124b-4ba8-9f1f-aab05eb581e6" class="bulleted-list"><li style="list-style-type:disc">A: <code>{}</code></li></ul><ul id="81978799-9a29-468a-8976-21325c19cd29" class="bulleted-list"><li style="list-style-type:disc">B: <code>ReferenceError: greetign is not defined</code></li></ul><ul id="a4ffd4e2-e908-4416-9b9d-48ef04f78c39" class="bulleted-list"><li style="list-style-type:disc">C: <code>undefined</code></li></ul><ul id="fa24b2d9-fb49-4f29-a4d5-2f947e63cf31" class="toggle"><li><details open=""><summary>Answer</summary><p id="315fe102-253d-47df-ad75-565f43c9619c" class="">A </p><p id="a1083fa4-0b47-4837-9e3f-bc690aab1fc5" class="">It logs the object, because we just created an empty object on the global object! When we mistyped <code>greeting</code> as <code>greetign</code>, the JS interpreter actually saw this as:</p><ol type="1" id="174fa46d-d1c4-43e6-9db6-5ebc80d51eb1" class="numbered-list" start="1"><li><code>global.greetign = {}</code> in Node.js</li></ol><ol type="1" id="4507a77f-c5ce-46df-af0b-bc7c7ed5f31f" class="numbered-list" start="2"><li><code>window.greetign = {}</code>, <code>frames.greetign = {}</code> and <code>self.greetign</code> in browsers.</li></ol><ol type="1" id="569a9a80-de82-4ed6-adf0-422ee7aef91f" class="numbered-list" start="3"><li><code>self.greetign</code> in web workers.</li></ol><ol type="1" id="eebcf77f-a5ee-40d7-9c7e-598ed7fa26d8" class="numbered-list" start="4"><li><code>globalThis.greetign</code> in all environments.</li></ol><ul id="ae5d08ef-6f3d-4346-b1e4-11a0e9493fb2" class="bulleted-list"><li style="list-style-type:disc">变量<code>greeting</code>被声明但未初始化，因此是<code>undefined</code>。</li></ul><ul id="57d9efe7-1dc5-40e4-adc1-0a956176a8d6" class="bulleted-list"><li style="list-style-type:disc"><code>greetign</code>由于拼写错误，被作为全局变量创建并赋值为一个空对象，但这并不影响<code>greeting</code>的值。</li></ul><h3 id="3b902896-b356-4ac9-83e5-75efa357c2ca" class="">避免此类错误的方法</h3><ol type="1" id="896f5d33-e03a-46a3-8eda-a0523a5dcbf8" class="numbered-list" start="1"><li><strong>使用严格模式</strong>：<ul id="a14db5bd-56ef-4d81-908f-63ac07ed1685" class="bulleted-list"><li style="list-style-type:disc">在脚本的顶部添加<code>&quot;use strict&quot;;</code>可以避免未声明变量被隐式创建为全局变量：</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4428c6ef-0744-48e1-a2f2-db333126e274" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">&quot;use strict&quot;;
+let greeting;
+greetign = {}; // ReferenceError: greetign is not defined
+console.log(greeting);</code></pre></li></ol><ol type="1" id="e6bdbbc4-7c1c-4210-85ab-a8ec51a9c8b8" class="numbered-list" start="2"><li><strong>在开发过程中使用静态代码分析工具</strong>：<ul id="b2b5f5d5-6238-43a7-805d-4416ff155488" class="bulleted-list"><li style="list-style-type:disc">使用像ESLint这样的工具可以帮助检测未声明变量和其他潜在错误。</li></ul></li></ol></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">10. understanding of JavaScript functions and the fact that they are first-class objects第一类对象的事实, capable of having properties added to them dynamically动态地添加属性.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="047d353c-4566-4bf3-9c95-08180c0d9daf" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function bark(){
+	console.log(&#x27;Woof!&#x27;);
+}
+bark.animal = &#x27;dog&#x27;;</code></pre><ul id="a6f69fea-cefa-4fb7-b047-290c3e19cd55" class="toggle"><li><details open=""><summary></summary><p id="781eb799-cafb-457c-8830-bb9dbb47e02d" class="">The code defines a function <code>bark</code> and then adds a property <code>animal</code> to it with the value <code>&#x27;dog&#x27;</code>. </p><p id="bdebfce7-c826-4098-b027-cc28cebb4d12" class="">This is possible in JavaScript, because functions are objects! (Everything besides primitive types are objects)</p><p id="c98ff6b6-caf9-42dd-b55d-dac53b5a3bd9" class="">A function is a special type of object. The code you write yourself isn&#x27;t the actual function. The function is an object with properties. This property is invocable.</p><ul id="ee320597-55a8-4c18-96be-0ac85fb003fc" class="bulleted-list"><li style="list-style-type:disc">A: Nothing, this is totally fine!</li></ul></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">11. Understanding the difference between adding a method to a constructor function itself versus adding it to the prototype of the constructor function in JavaScript.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6b8963cf-8c23-40a0-9266-b0dd2ce8e31a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+const lydia = new Person(&#x27;Lydia&#x27;, &#x27;Hallie&#x27;);
+const sarah = Person(&#x27;Sarah&#x27;, &#x27;Smith&#x27;);
+
+console.log(lydia);
+console.log(sarah);</code></pre><ul id="a19d1d12-e9fe-4834-ae78-1d54463e0655" class="toggle"><li><details open=""><summary><code>TypeError</code></summary><p id="ce3420c9-0b7b-4d26-8327-fa99ed83d6ea" class="">In JavaScript, functions are objects, and therefore, the method <code>getFullName</code> gets added to the constructor function object itself. For that reason, we can call <code>Person.getFullName()</code>, but <code>member.getFullName</code> throws a <code>TypeError</code>.</p><p id="58b65e0b-caff-4785-a4c5-25cfdefbc979" class="">To make the <code>getFullName</code> method available to all instances of <code>Person</code>, it should be added to the <code>Person.prototype</code> like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="98e97045-b89b-41de-8e56-7520b7b6d7b0" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">Person.prototype.getFullName = function(){
+	return `${this.firstName} ${this.lastName}`;
+}</code></pre></details></li></ul><p id="f2f7b028-8f10-4790-b3cf-6bd33da60b1c" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">12. understanding the behavior of the <code>this</code> keyword in JavaScript when a function is called without the <code>new</code> keyword.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3d93bc7b-de36-49a0-af18-c4a804a57a32" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function Person(firstName, lastName){
+	this.firstName = firstName;
+	this.laseName = lastName;
+}
+const lydia = new Person(&#x27;Lydia&#x27;,&#x27;Hallie&#x27;);
+const sarah = Person(&#x27;Sara&#x27;,&#x27;Smith&#x27;);
+console.log(lydia);
+console.log(sarah);</code></pre><ul id="8217d7fb-18ce-4655-ace2-be50e34d5793" class="toggle"><li><details open=""><summary> <code>Person {firstName: &quot;Lydia&quot;, lastName: &quot;Hallie&quot;}</code> and <code>undefined</code></summary><p id="05e1b513-a8c8-4421-889e-827170bbe5fb" class="">For <code>sarah</code>, we didn&#x27;t use the <code>new</code> keyword. When using <code>new</code>, <code>this</code> refers to the new empty object we create. However, if you don&#x27;t add <code>new</code>, <code>this</code> refers to the <strong>global object</strong>!</p><p id="6f2ac707-f2da-4352-ba45-b01df8fb57fd" class="">We said that <code>this.firstName</code> equals <code>&quot;Sarah&quot;</code> and <code>this.lastName</code> equals <code>&quot;Smith&quot;</code>. What we actually did, is defining <code>global.firstName = &#x27;Sarah&#x27;</code> and <code>global.lastName = &#x27;Smith&#x27;</code>. <code>sarah</code> itself is left <code>undefined</code>, since we don&#x27;t return a value from the <code>Person</code> function</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">13. understanding the <mark class="highlight-orange">three phases of event propagation</mark> in the<mark class="highlight-orange"> Document Object Model (DOM)</mark> of web development.</summary><div class="indented"><p id="903848e3-8586-4db6-86c2-0051f189f6a4" class=""><strong>What are the three phases of event propagation?</strong></p><p id="e4623f59-e7f9-4820-9a63-325ca3fa3dbf" class="">Capturing &gt; Target &gt; Bubbling</p><ul id="ecb797b6-019e-49d9-93ad-85f5f4f41c94" class="toggle"><li><details open=""><summary>CTB</summary><figure id="0b2eabad-d265-4230-ad94-86fd1878d5cd" class="image"><a href="JS%E5%88%B7%E9%A2%98%E9%9B%86%20c3cd42ef0ac94babaf06538f3c7642b1/Untitled.png"><img style="width:192px" src="JS%E5%88%B7%E9%A2%98%E9%9B%86%20c3cd42ef0ac94babaf06538f3c7642b1/Untitled.png"/></a></figure><p id="169c7d23-e6ca-49d9-96ba-5b0c890dc726" class="">During the <strong>capturing</strong> phase, the event goes through the ancestor elements down to the target element. It then reaches the <strong>target</strong> element, and <strong>bubbling</strong> begins.</p><p id="7e0ee515-2aa7-4345-ae72-d05011223aca" class="">理解Web开发的文档对象模型（DOM）中事件传播的三个阶段。</p><p id="5d601682-07c4-462f-8931-c41c2941e62f" class="">事件传播的三个阶段是：</p><ol type="1" id="cbc6017f-0498-4b40-ab3c-97045ecc4615" class="numbered-list" start="1"><li><strong>捕获阶段</strong>：事件从窗口开始，通过 DOM 树向下传播到目标元素。</li></ol><ol type="1" id="527b3846-693a-4f74-87ea-cf56f24f248f" class="numbered-list" start="2"><li><strong>目标阶段</strong>：事件到达目标元素。</li></ol><ol type="1" id="86c3bb4c-9e85-422f-8e00-303a1f70dece" class="numbered-list" start="3"><li><strong>冒泡阶段</strong>：事件从目标元素通过 DOM 树冒泡回到窗口。</li></ol></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">14. All objects have prototypes, except for the <mark class="highlight-orange"><strong>base object</strong></mark><mark class="highlight-orange">. </mark></summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bdedf468-b23b-485a-871f-28a0059d16de" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function sum(a, b){
+	return a + b;
+}
+sum(1, &#x27;2&#x27;);</code></pre><ul id="c5fb76a7-bfbc-450c-aa91-a9ea3c91efb0" class="toggle"><li><details open=""><summary></summary><ul id="a7fb239b-e7fa-450d-a4db-0763e6b00fee" class="bulleted-list"><li style="list-style-type:disc">Most objects in JavaScript have prototypes, allowing them to<mark class="highlight-orange"> inherit properties and methods</mark> from their prototypes.</li></ul><ul id="1e1c3852-5c2e-42ec-9361-751063ff95b6" class="bulleted-list"><li style="list-style-type:disc">However, the base object created with <code>Object.create(null)</code> has no prototype.  which do not inherit from any prototype.</li></ul></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">15. the behavior of type coercion强制转换 in JavaScript, where the <code>+</code> operator can lead to concatenation 连接when one of the operands is a string.</summary><div class="indented"><ul id="2a3a8711-bdae-47d1-a52c-0cd66ec1b385" class="toggle"><li><details open=""><summary></summary><p id="bb435225-a91a-48a6-aca1-6d50c5dd5dd2" class="">JavaScript is a <strong>dynamically typed language</strong>: we don&#x27;t specify what types certain variables are. Values can automatically be converted into another type without you knowing, which is called <em>implicit type coercion</em>. <strong>Coercion</strong> is converting from one type into another.</p><p id="c3fd9d07-a7fb-4997-a909-3270ac56b470" class="">In this example, JavaScript converts the number <code>1</code> into a string, in order for the function to make sense and return a value. During the addition of a numeric type (<code>1</code>) and a string type (<code>&#x27;2&#x27;</code>), the number is treated as a string. We can concatenate strings like <code>&quot;Hello&quot; + &quot;World&quot;</code>, so what&#x27;s happening here is <code>&quot;1&quot; + &quot;2&quot;</code> which returns <code>&quot;12&quot;</code>.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">16. the behavior of both postfix and prefix increment operators in JavaScript.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2e3f1250-9965-41f3-82ca-ffbf17724bd3" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">let number = 0;
+console.log(number++); //The postfix unary operator ++:后缀一元运算符
+console.log(++number);// Prefix </code></pre><ul id="10b7a98c-20aa-46ec-a53a-0f26a839723f" class="toggle"><li><details open=""><summary></summary><ol type="1" id="34426362-86b6-420e-bb38-355f5a74df34" class="numbered-list" start="1"><li><code>console.log(number++);</code><ul id="61ff8412-10fa-42c2-b5e4-f387a3126b02" class="bulleted-list"><li style="list-style-type:disc">The postfix increment operator <code>++</code> returns the value before incrementing.</li></ul><ul id="1e25b701-fe11-4b85-801b-cc3db909fcd0" class="bulleted-list"><li style="list-style-type:disc">It prints <code>0</code> and then increments <code>number</code> to <code>1</code>.</li></ul></li></ol><ol type="1" id="0c77ac90-9bc2-44d6-9b6f-8f139d2d454a" class="numbered-list" start="2"><li><code>console.log(++number);</code><ul id="089edf3b-84dc-4fdb-8c5e-91b19afc3d39" class="bulleted-list"><li style="list-style-type:disc">The prefix increment operator <code>++</code> increments the value before returning it.</li></ul><ul id="bf4d0796-b8cd-4b26-a343-dfc3604084d7" class="bulleted-list"><li style="list-style-type:disc">It increments <code>number</code> to <code>2</code> and then prints <code>2</code>.</li></ul></li></ol><ol type="1" id="e30fac41-6085-478e-974d-fdb11fd5403b" class="numbered-list" start="3"><li><code>console.log(number);</code><ul id="6abcd353-dfa9-4996-b249-cfc5809404b5" class="bulleted-list"><li style="list-style-type:disc">By this point, <code>number</code> is already <code>2</code>.</li></ul><ul id="d8c193f9-88cf-4c26-8a48-76de09034729" class="bulleted-list"><li style="list-style-type:disc">It prints <code>2</code>.</li></ul></li></ol><p id="6c58730f-b31e-445c-b11c-f0f31e588013" class="">Therefore, the correct answer is:</p><ul id="43f2071f-19ea-44f1-99c8-2dc72eb92661" class="bulleted-list"><li style="list-style-type:disc">C: 0 2 2</li></ul></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">17.  how tagged template literals split the template string into its literal parts and expression values. 标记模板文字如何将模板字符串拆分为其文字部分和表达式值</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e93b708e-e4b5-4f2c-870a-310b395a572b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getPersonInfo(one, two, three){
+	console.log(one); //one will be an array of the literal strings: [&quot;&quot;, &quot; is &quot;, &quot; years old&quot;].
+	console.log(two); //two will be the value of the first expression: &quot;Lydia&quot;.
+	console.log(three);//three will be the value of the second expression: 21.
+}
+const person = &#x27;Lydia&#x27;;
+const age = 21;
+getPersonInfo`${person} is ${age} years old`;</code></pre><ul id="cb3915f2-6a8b-42bb-9d2e-386316dcc05b" class="toggle"><li><details open=""><summary></summary><p id="a03499b3-342c-4a90-a54f-6c6b9cbed310" class="">When using tagged template literals, the function <code>getPersonInfo</code> is called with the parts of the template literal separated into different arguments. The first argument (<code>one</code>) is an array of the literal strings, and the subsequent arguments (<code>two</code>, <code>three</code>, etc.) are the values of the expressions inside the template literal.</p><p id="30b1ffa6-cf76-43d9-b32a-04267e060827" class="">Here&#x27;s how it works:</p><ol type="1" id="5c263724-cf3b-4c83-a3cd-22f22054a5ba" class="numbered-list" start="1"><li><code>one</code> will be <strong>an array of the literal strings:</strong> <code>[&quot;&quot;, &quot; is &quot;, &quot; years old&quot;]</code>.</li></ol><ol type="1" id="a74af143-2255-4c43-a12f-89efca5f23d5" class="numbered-list" start="2"><li><code>two</code> will be the <strong>value </strong>of the first<strong> expression</strong>: <code>&quot;Lydia&quot;</code>.</li></ol><ol type="1" id="c72ad351-0c84-46b1-b5a7-c16d5e8f9be7" class="numbered-list" start="3"><li><code>three</code> will be the value of the second expression: <code>21</code>.</li></ol></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">18. the concept of reference equality for objects in JavaScript, where two objects are <mark class="highlight-orange"><strong>only considered equal</strong></mark> if they refer to the <mark class="highlight-orange">same memory location.</mark></summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b2380299-8da4-4227-89d0-d8c531b56e4a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function checkAge(data) {
+  if (data === { age: 18 }) {
+    console.log(&#x27;You are an adult!&#x27;);
+  } else if (data == { age: 18 }) {
+    console.log(&#x27;You are still an adult.&#x27;);
+  } else {
+    console.log(`Hmm.. You don&#x27;t have an age I guess`);
+  }
+}
+
+checkAge({ age: 18 });</code></pre><ul id="c5b45e11-8071-403a-8270-41e848fdc4aa" class="toggle"><li><details open=""><summary>Hmm.. You don&#x27;t have an age I guess</summary><ol type="1" id="cafb3291-09e4-4493-98e1-61e76b122dd0" class="numbered-list" start="1"><li>The <code>if</code> statement uses the strict equality operator (<code>===</code>) to compare <code>data</code> with <code>{ age: 18 }</code>. In JavaScript, objects are compared by reference, not by value. Since the two objects being compared do not refer to the same memory location, the comparison returns <code>false</code>.</li></ol><ol type="1" id="e07ce333-7cd1-44ae-baf8-6ed3fd5d765e" class="numbered-list" start="2"><li>The <code>else if</code> statement uses the loose equality operator (<code>==</code>) to compare <code>data</code> with <code>{ age: 18 }</code>. Loose equality also compares objects by reference. Therefore, this comparison also returns <code>false</code>.</li></ol><ol type="1" id="5e68c598-d4e7-46aa-84a5-94bb0cd9923d" class="numbered-list" start="3"><li>Since both the <code>if</code> and <code>else if</code> conditions evaluate to <code>false</code>, the <code>else</code> block executes.</li></ol></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">19. the rest parameter creates an array, and the <code>typeof</code> operator identifies arrays as objects in JavaScript.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="55159e4f-f04b-46f6-9002-f0d7470d2503" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getAge(...args){
+	console.log(typeof args);
+}
+getAge(21);</code></pre><ul id="f5d3c928-6211-4209-8b33-c971e7348078" class="toggle"><li><details open=""><summary>&quot;object”</summary><ol type="1" id="d91c726f-c293-478d-ba9d-908d93d883c1" class="numbered-list" start="1"><li>The rest parameter <code>...args</code> collects all remaining arguments into an array.</li></ol><ol type="1" id="336ff191-25f6-4a73-94c8-d5e3a8cfd9d1" class="numbered-list" start="2"><li>When <code>getAge(21)</code> is called, the <code>args</code> parameter becomes an array containing a single element: <code>[21]</code>.</li></ol><ol type="1" id="b4604223-7492-441a-b978-e79f7c14d76b" class="numbered-list" start="3"><li>The <code>typeof</code> operator is used to determine the type of the <code>args</code> array. In JavaScript, arrays are a type of object, so <code>typeof args</code> returns <code>&quot;object&quot;</code>.</li></ol></details></li></ul><p id="96caae15-149b-45a2-9d0d-d1225b20a497" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">20. the importance of declaring variables properly when using strict mode to avoid unintended global variable creation and related errors.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="98f885c7-e21b-40d0-a7ef-0fae23e33416" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function getAge() {
+  &#x27;use strict&#x27;;// prevents the accidental creation of global variables.
+  age = 21;
+  console.log(age);
+}
+
+getAge();</code></pre><ul id="11af94e5-aa52-478d-9f75-373b08c463ad" class="toggle"><li><details open=""><summary>ReferenceError</summary><ul id="7ca4a20a-1a53-4c8d-a0e2-4dd0ddf19e43" class="bulleted-list"><li style="list-style-type:disc">The <code>&#x27;use strict&#x27;;</code> directive enforces stricter parsing and error handling in JavaScript code.</li></ul><ul id="d2e4bee7-fbb9-41d6-991b-2091205de945" class="bulleted-list"><li style="list-style-type:disc">In strict mode, assigning a value to an undeclared variable results in a <code>ReferenceError</code>. This prevents the accidental creation of global variables. If we didn&#x27;t use <code>&quot;use strict&quot;</code>, it would have worked, since the property <code>age</code> would have gotten added to the global object.</li></ul><ul id="614e2db3-a27b-426f-b585-e2559a586462" class="bulleted-list"><li style="list-style-type:disc">In the function <code>getAge</code>, the assignment <code>age = 21;</code> attempts to assign a value to <code>age</code> without declaring it first (e.g., using <code>let</code>, <code>const</code>, or <code>var</code>).</li></ul></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">21. how the <code>eval</code> function can be used to evaluate string expressions in JavaScript, though its use is generally discouraged due to security and performance concerns.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1efee197-f6a8-479e-8bb0-98ab3505d6f7" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const sum = eval(&#x27;10*10+5&#x27;);</code></pre><ul id="6449136e-d08a-4d86-b70d-a727ba3e62f3" class="toggle"><li><details open=""><summary>105</summary><ol type="1" id="95479a5a-4b8c-4201-a5cf-04f3c9988f0a" class="numbered-list" start="1"><li>The <code>eval</code> function takes a string and evaluates it as JavaScript code.</li></ol><ol type="1" id="67167255-7e00-4eb8-9b4e-45b9f812f9d0" class="numbered-list" start="2"><li>The string <code>&#x27;10*10+5&#x27;</code> represents a mathematical expression.</li></ol><ol type="1" id="569e3215-03b7-41bb-8c04-026e7eecf2c2" class="numbered-list" start="3"><li>When evaluated, the expression <code>10 * 10 + 5</code> is calculated as follows:<ul id="977ecbfe-38cf-4e17-bea9-7359aa5fbf20" class="bulleted-list"><li style="list-style-type:disc">First, the multiplication <code>10 * 10</code> is performed, resulting in <code>100</code>.</li></ul><ul id="db8ba6f2-597e-4c62-a456-52026f80a817" class="bulleted-list"><li style="list-style-type:disc">Then, <code>100 + 5</code> is evaluated, resulting in <code>105</code>.</li></ul></li></ol></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>22. How long is cool_secret accessible?</strong></summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="902dea0d-2f58-41f7-b36d-f7a9ad63b42e" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">sessionStorage.setItem(&#x27;cool_secret&#x27;, 123);// how sessionStorage works in web browsers, providing temporary storage that lasts only for the duration of the page session.</code></pre><ul id="5502d44b-730a-4ef9-a056-d3d0e8d187f5" class="toggle"><li><details open=""><summary> When the user closes the tab.</summary><p id="3e5d0f53-b0a8-4250-b042-3b5b7c47a129" class="">The data stored in <code>sessionStorage</code> is removed after closing the <em>tab</em>.</p><p id="8a1b17d2-81ce-4c8b-a9a9-0ec4bd2a19b1" class="">If you used <code>localStorage</code>, the data would&#x27;ve been there forever, unless for example <code>localStorage.clear()</code> is invoked.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">23. how variable redeclaration重新声明变量 with the <code>var</code> keyword works in JavaScript, where the most recent assignment takes precedence.最近的赋值优先。</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4b8b7ba8-ca1c-4eb2-846d-980c6c8dfa0e" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">var num = 8;
+var num = 10;
+
+console.log(num);</code></pre><ul id="9e1f33ae-ff98-4c58-80fc-efbc3daec8ff" class="toggle"><li><details open=""><summary>10</summary><p id="f9661f5e-d256-42ff-9783-83cb493859b8" class="">With the <code>var</code> keyword, you can<mark class="highlight-orange"> declare multiple variables with the same name. The variable will then hold the latest value.</mark></p><p id="f3f7106c-9514-4d34-a4f1-d1f9ecf5a48b" class="">You cannot do this with <code>let</code> or <code>const</code> since they&#x27;re <mark class="highlight-orange">block-scoped and therefore can&#x27;t be redeclared.</mark></p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">24. difference in behavior between objects and sets in JavaScript when it comes to type conversion and property/membership checks. 对象和集合在类型转换和属性/成员资格检查时的行为差异。</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="61843316-e9ea-4abb-98d6-2ac524485c0a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const obj = { 1: &#x27;a&#x27;, 2: &#x27;b&#x27;, 3: &#x27;c&#x27; };
+const set = new Set([1, 2, 3, 4, 5]);
+
+obj.hasOwnProperty(&#x27;1&#x27;);
+obj.hasOwnProperty(1);
+set.has(&#x27;1&#x27;);//no string in a set 
+set.has(1);</code></pre><ul id="34644c0b-c007-48d4-960a-52f7e63a1d67" class="toggle"><li><details open=""><summary><code>true</code> <code>true</code> <code>false</code> <code>true</code></summary><p id="396fc333-ebe2-47f6-a197-f8430e435fcc" class="">All object keys (excluding Symbols) are strings under the hood, even if you don&#x27;t type it yourself as a string. This is why <code>obj.hasOwnProperty(&#x27;1&#x27;)</code> also returns true.</p><p id="0aabd6e8-641f-4a32-9a33-2b5925fdf703" class="">It doesn&#x27;t work that way for a set. There is no <code>&#x27;1&#x27;</code> in our set: <code>set.has(&#x27;1&#x27;)</code> returns <code>false</code>. It has the numeric type <code>1</code>, <code>set.has(1)</code> returns <code>true</code>.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">25. JavaScript handles duplicate keys in object literals, where the last specified value for a given key is the one that is retained.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a393a5c5-f672-4704-a05c-57ee30557263" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const obj = { a: &#x27;one&#x27;, b: &#x27;two&#x27;, a: &#x27;three&#x27; };
+console.log(obj);</code></pre><ul id="dd033cae-38ae-4688-af2a-68a7507a9509" class="toggle"><li><details open=""><summary><code>{ a: &quot;three&quot;, b: &quot;two&quot; }</code></summary><p id="32e7eb91-ceac-4bb0-b2e8-77f7818df047" class="">If you have two keys with the same name, the key will be replaced. It will still be in its first position, but with the last specified value.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">26. <strong>The JavaScript global execution context creates two things for you: the global object, and the &quot;this&quot; keyword.</strong></summary><div class="indented"><ul id="49debb8b-97fc-4ebd-ac45-9eb3a8408dd9" class="toggle"><li><details open=""><summary>True</summary><p id="a143988a-9da6-4c2f-b49f-aeb6d6a30966" class="">The base execution context is the global execution context: it&#x27;s what&#x27;s accessible everywhere in your code.<div class="indented"><ol type="1" id="d8fdefc7-fe4c-4467-9c09-2bcd0c4888a7" class="numbered-list" start="1"><li><strong>The global object</strong>: This is the window object in a browser environment or the global object in Node.js.</li></ol><ol type="1" id="7b51a783-8266-4a46-a905-a99a98671262" class="numbered-list" start="2"><li><strong>The </strong><code><strong>this</strong></code><strong> keyword</strong>: In the global execution context, <code>this</code> refers to the global object.</li></ol></div></p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>27. What&#x27;s the output? Pass</strong></summary><div class="indented"><p id="3b733477-0189-4c3d-815d-ad987590b4ec" class=""><code>for (let i = 1; i &lt; 5; i++) {<br/>  if (i === 3) continue;<br/>  console.log(i);<br/>}<br/></code></p><ul id="32ad91fb-8e05-4a6e-b723-90415926efbe" class="toggle"><li><details open=""><summary>The <code>continue</code> statement skips an iteration if a certain condition returns <code>true</code>.</summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">28. how adding methods to the prototype of built-in constructors allows all instances of that constructor to access the newly added methods.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b7952e45-1568-4d6f-908a-abdece4deac8" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">String.prototype.giveLydiaPizza = () =&gt; {
+	return &#x27;Pizza Ready!&#x27;;
+};
+const name = &#x27;Lydia&#x27;;
+console.log(name.giveLydiaPizza())</code></pre><ul id="59fd6ecb-3dfe-41b8-8bc7-270c61d348d8" class="toggle"><li><details open=""><summary>Pizza Ready!</summary><p id="51815f87-6427-4fe3-9a36-49fce0c9ed8f" class=""><code>String</code> is a built-in constructor, that we can add properties to. I just added a method to its prototype. Primitive strings are automatically converted into a string object, generated by the string prototype function. So, all strings (string objects) have access to that method!</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">How Javascript handle object used as a key in another object.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4e43361d-d818-4f8d-97fe-0640c25a5017" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const a = {};
+const b = { key: &#x27;b&#x27; };
+const c = { key: &#x27;c&#x27; };
+a[b] = 123;
+a[c] = 456;
+console.log(a[b]);</code></pre><ul id="4de3f56a-82ca-4f15-ae78-d1038b42f03c" class="toggle"><li><details open=""><summary>456</summary><p id="ef5ecf6e-994a-4cf3-8e82-4683fa1683b8" class="">Object keys are automatically converted into strings. We are trying to set an object as a key to object <code>a</code>, with the value of <code>123</code>.</p><p id="a45dbdf5-b2fa-4458-aacb-1ed1acbce9ad" class="">However, when we stringify an object, it becomes <code>&quot;[object Object]&quot;</code>. So what we are saying here, is that <code>a[&quot;[object Object]&quot;] = 123</code>. Then, we can try to do the same again. <code>c</code> is another object that we are implicitly stringifying. So then, <code>a[&quot;[object Object]&quot;] = 456</code>.</p><p id="02b93625-d66c-4fab-b2ef-e17ebba0c654" class="">Then, we log <code>a[b]</code>, which is actually <code>a[&quot;[object Object]&quot;]</code>. We just set that to <code>456</code>, so it returns <code>456</code>.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">30.  the event loop in JavaScript, where asynchronous callbacks (even with a delay of 0 milliseconds) are executed after the current stack of synchronous code.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1d02f136-5c0d-48dc-8a13-89bff66748c4" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const foo = () =&gt; console.log(&#x27;First&#x27;);
+const bar = () =&gt; setTimeout(() =&gt; console.log(&#x27;Second&#x27;));
+const baz = () =&gt; console.log(&#x27;Third&#x27;);
+
+bar();
+foo();
+baz();</code></pre><ul id="e6a2534a-4a21-40eb-b78b-47c30d04a997" class="toggle"><li><details open=""><summary><code>First</code> <code>Third</code> <code>Second</code></summary><p id="47fc3520-fe18-425f-9f0a-79331dd3d0b1" class="">We have a <code>setTimeout</code> function and invoked it first. Yet, it was logged last.</p><p id="0f77f8eb-00ee-4ff3-bf35-66efce34feea" class="">This is because in browsers, we don&#x27;t just have the runtime engine, we also have something called a <code>WebAPI</code>. The <code>WebAPI</code> gives us the <code>setTimeout</code> function to start with, and for example the DOM.</p><p id="a39d97a0-7264-4b0c-b5ac-d3ec2109c81e" class="">After the <em>callback</em> is pushed to the WebAPI, the <code>setTimeout</code> function itself (but not the callback!) is popped off the stack.</p><figure id="1c18535a-3b47-4cd4-b2c0-af90a6128cd6" class="image"><a href="https://camo.githubusercontent.com/3fb6829734d4f143e7b0e65777fb0fa797477b1099d5bf80dfff487dbf8d58ea/68747470733a2f2f692e696d6775722e636f6d2f58357773484f672e706e67"><img style="width:200px" src="https://camo.githubusercontent.com/3fb6829734d4f143e7b0e65777fb0fa797477b1099d5bf80dfff487dbf8d58ea/68747470733a2f2f692e696d6775722e636f6d2f58357773484f672e706e67"/></a></figure><p id="3a161199-b676-408f-bfbe-9c4d28012860" class="">Now, <code>foo</code> gets invoked, and <code>&quot;First&quot;</code> is being logged.</p><figure id="beeb90fc-e789-418f-8175-069f6c044fed" class="image"><a href="https://camo.githubusercontent.com/67039fb1a1de6555795f4a4d935902970273a9ecedbd4db0d704c890d4cc104d/68747470733a2f2f692e696d6775722e636f6d2f507663306447712e706e67"><img style="width:200px" src="https://camo.githubusercontent.com/67039fb1a1de6555795f4a4d935902970273a9ecedbd4db0d704c890d4cc104d/68747470733a2f2f692e696d6775722e636f6d2f507663306447712e706e67"/></a></figure><p id="f857df4e-7803-4ec7-804e-868035ab4dc6" class=""><code>foo</code> is popped off the stack, and <code>baz</code> gets invoked. <code>&quot;Third&quot;</code> gets logged.</p><figure id="9ad33f76-15ea-4761-b4a7-d41d13f81767" class="image"><a href="https://camo.githubusercontent.com/3cc29283d12de4212d526a805190866349c3db20bf4b51e1fae5f08e318bad16/68747470733a2f2f692e696d6775722e636f6d2f576841326243502e706e67"><img style="width:200px" src="https://camo.githubusercontent.com/3cc29283d12de4212d526a805190866349c3db20bf4b51e1fae5f08e318bad16/68747470733a2f2f692e696d6775722e636f6d2f576841326243502e706e67"/></a></figure><p id="1b624026-f854-4e8f-9612-82b2824ddf1c" class="">The WebAPI can&#x27;t just add stuff to the stack whenever it&#x27;s ready. Instead, it pushes the callback function to something called the <em>queue</em>.</p><figure id="38884ec2-f792-4c3c-aaab-f6e3301dfd32" class="image"><a href="https://camo.githubusercontent.com/ac7d6708d80a2f40ef6887fd10e09b9921bb76b74024debb3b0a9fdc41f42d52/68747470733a2f2f692e696d6775722e636f6d2f4e536e445a6d552e706e67"><img style="width:200px" src="https://camo.githubusercontent.com/ac7d6708d80a2f40ef6887fd10e09b9921bb76b74024debb3b0a9fdc41f42d52/68747470733a2f2f692e696d6775722e636f6d2f4e536e445a6d552e706e67"/></a></figure><p id="2e6abc34-1b25-4f55-9059-21789d142472" class="">This is where an event loop starts to work. An <strong>event loop</strong> looks at the stack and task queue. If the stack is empty, it takes the first thing on the queue and pushes it onto the stack.</p><figure id="dd8d517a-29b1-4b83-8e7f-1af164f4ffb9" class="image"><a href="https://camo.githubusercontent.com/22adea15940091bf25f18f9003d56b64b45ef2ac6038166ba1bae08c32eb4570/68747470733a2f2f692e696d6775722e636f6d2f757969536341492e706e67"><img style="width:200px" src="https://camo.githubusercontent.com/22adea15940091bf25f18f9003d56b64b45ef2ac6038166ba1bae08c32eb4570/68747470733a2f2f692e696d6775722e636f6d2f757969536341492e706e67"/></a></figure><p id="c36e9e34-535b-4f2f-930b-d82649ec342d" class=""><code>bar</code> gets invoked, <code>&quot;Second&quot;</code> gets logged, and it&#x27;s popped off the stack.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">31. how the <code>event.target</code> property works, always pointing to the element that initiated the event, regardless of where the event listener is attached.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d45a8900-ace7-4571-94f4-9769c20cb1c7" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">&lt;div onclick=&quot;console.log(&#x27;first div&#x27;)&quot;&gt;
+  &lt;div onclick=&quot;console.log(&#x27;second div&#x27;)&quot;&gt;
+    &lt;button onclick=&quot;console.log(&#x27;button&#x27;)&quot;&gt;
+      Click!
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre><ul id="8b9df4da-be60-490b-819e-7375b8f323fa" class="toggle"><li><details open=""><summary>button</summary><p id="a3663d94-ad00-403c-858f-a8ef417d06bf" class="">The deepest nested element that casued the event is the target of the event. stop bubbling by <code>event.stopPropagation</code></p><p id="ce539b9c-a265-44a2-b060-1dc378783a25" class="">When the button is clicked, the event propagates from the button up through its ancestors (the inner <code>div</code> and then the outer <code>div</code>).</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">32. the event propagation mechanism in JavaScript, where events bubble up from the target element to its ancestors, allowing event handlers on parent elements to be triggered after handlers on child elements.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bb8c6ed2-a41d-412d-90cc-6b39b454afcf" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">&lt;div onclick=&quot;console.log(&#x27;div&#x27;)&quot;&gt;
+  &lt;p onclick=&quot;console.log(&#x27;p&#x27;)&quot;&gt;
+    Click here!
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre><ul id="ab50e8d2-a6b2-4975-b6bc-48f52129d217" class="toggle"><li><details open=""><summary><code>p</code> <code>div</code></summary><p id="30bdaecd-6b16-4ebc-9833-712325d40c43" class="">If we click <code>p</code>, we see two logs: <code>p</code> and <code>div</code>. During event propagation, there are 3 phases: capturing, targeting, and bubbling. By default, event handlers are executed in the bubbling phase (unless you set <code>useCapture</code> to <code>true</code>). It goes from the deepest nested element outwards</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">33. The <code>call</code> method, which invokes the function immediately, and the <code>bind</code> method, which returns a new function that can be called later.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11b0ecb7-87c9-4fa8-b4ca-5ae47eaa22bc" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const person = { name: &#x27;Lydia&#x27; };
+
+function sayHi(age) {
+  return `${this.name} is ${age}`;
+}
+
+console.log(sayHi.call(person, 21));
+console.log(sayHi.bind(person, 21));</code></pre><ul id="18a62395-32c8-4307-9c82-c7624eb8a0c4" class="toggle"><li><details open=""><summary><code>Lydia is 21</code> <code>function</code></summary><p id="ea80e509-e02f-4dc8-9c31-45b12ff0dea8" class="">With both, we can pass the object to which we want the <code>this</code> keyword to refer to. However, <code>.call</code> is also <em>executed immediately</em>!</p><p id="9374722e-03d1-495d-98b4-5d1d58db74ff" class=""><code>.bind.</code> returns a <em>copy</em> of the function, but with a bound context! It is not executed immediately.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">34. FYI: <code>typeof</code> can return the following list of values: <code>undefined</code>, <code>boolean</code>, <code>number</code>, <code>bigint</code>, <code>string</code>, <code>symbol</code>, <code>function</code> and <code>object</code>. Note that <code>typeof null</code> returns <code>&quot;object&quot;</code>.</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fe9b21b5-460f-462a-bb9e-3694365b36a0" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function sayHi(){
+	return (() =&gt;  0)();
+}
+console.log(typeof sayHi());</code></pre><ul id="bc5e59c7-ebb7-4e76-bae5-1cfedc846cc3" class="toggle"><li><details open=""><summary>&quot;number”</summary><ol type="1" id="f36c7ed9-408a-4407-b347-e26fc1406a3f" class="numbered-list" start="1"><li>The <code>sayHi</code> function is defined. Inside it, an arrow function <code>(() =&gt; 0)</code> is immediately invoked with <code>()</code>.</li></ol><ol type="1" id="ded5d726-101d-4785-bb6e-5517b6092c23" class="numbered-list" start="2"><li>The arrow function <code>() =&gt; 0</code> returns the number <code>0</code>.</li></ol><ol type="1" id="0dfdbbdc-f3eb-4026-b4d5-217898951903" class="numbered-list" start="3"><li>Thus, <code>sayHi</code> returns <code>0</code>.</li></ol><ol type="1" id="0ae913a8-b08e-4c56-8356-c4b33103d055" class="numbered-list" start="4"><li><code>console.log(typeof sayHi());</code> logs the type of the return value of <code>sayHi()</code>, which is <code>0</code>.</li></ol><ol type="1" id="ad1768e6-3eb0-427d-8a1a-677c9f241848" class="numbered-list" start="5"><li>The <code>typeof</code> operator applied to <code>0</code> returns <code>&quot;number&quot;</code>.</li></ol></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">35. 8 falsy values:</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fb9fdb9e-de0a-4542-9f0c-8b0a38f247f9" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">0;
+new Number(0);
+(&#x27;&#x27;);
+(&#x27; &#x27;);
+new Boolean(false);
+undefined;</code></pre><ul id="edb98d95-b76a-4f46-8051-f24798705019" class="toggle"><li><details open=""><summary><code>0</code>, <code>&#x27;&#x27;</code>, <code>undefined</code></summary><ol type="1" id="bd19091e-6baf-48cb-8e9d-79629c3277b5" class="numbered-list" start="1"><li><code>0</code> - This is a falsy value.</li></ol><ol type="1" id="59529001-1e06-489f-afce-5642b7ba4abc" class="numbered-list" start="2"><li><code>new Number(0)</code> - This creates a Number object. Objects are always truthy.</li></ol><ol type="1" id="6bb9527a-2f94-4263-8ef0-5b8132361eb9" class="numbered-list" start="3"><li><code>(&#x27;&#x27;)</code> - This is an empty string, which is falsy.</li></ol><ol type="1" id="6b947c32-e4df-4f19-85b9-47936005ca4e" class="numbered-list" start="4"><li><code>(&#x27; &#x27;)</code> - This is a non-empty string (a string with a space), which is truthy.</li></ol><ol type="1" id="23dfb2a6-ef7f-422e-8017-d76dd1917edf" class="numbered-list" start="5"><li><code>new Boolean(false)</code> - This creates a Boolean object. Objects are always truthy, even if they hold a falsy value inside.</li></ol><ol type="1" id="8fa2d813-344a-455c-9657-7408eb3390c2" class="numbered-list" start="6"><li><code>undefined</code> - This is a falsy value.</li></ol><p id="91c63ffb-1aa8-48a2-88cd-861a1588a551" class="">There are 8 falsy values:<div class="indented"><ul id="e0a18039-cccd-4c22-bcf2-0dedce2aae7a" class="bulleted-list"><li style="list-style-type:disc"><code>undefined</code></li></ul><ul id="814da644-0049-4987-a44f-e18a304060d6" class="bulleted-list"><li style="list-style-type:disc"><code>null</code></li></ul><ul id="d05f6eb5-5a61-4449-b2cb-fb17e0b274e2" class="bulleted-list"><li style="list-style-type:disc"><code>NaN</code></li></ul><ul id="b82b0fd5-236c-47af-8619-2bc3e2191edc" class="bulleted-list"><li style="list-style-type:disc"><code>false</code></li></ul><ul id="29a04481-4b0c-469d-afaf-d105113a260c" class="bulleted-list"><li style="list-style-type:disc"><code>&#x27;&#x27;</code> (empty string)</li></ul><ul id="b5c3d21b-7954-4916-ba34-975cfef4d0ac" class="bulleted-list"><li style="list-style-type:disc"><code>0</code></li></ul><ul id="6ebcd95a-5974-4709-bb47-240a2e96b8a9" class="bulleted-list"><li style="list-style-type:disc">-<code>0</code></li></ul><ul id="eeea13ef-b1d4-44b8-a03c-2b0dbd72da70" class="bulleted-list"><li style="list-style-type:disc"><code>0n</code> (BigInt(0))</li></ul><p id="ce2ad2ad-ede8-44e2-ac0c-238d3c34797a" class="">Function constructors, like <code>new Number</code> and <code>new Boolean</code> are truthy.</p></div></p><p id="3b103442-8928-42e5-9bd0-345bb9af1826" class=""><div class="indented"><p id="aea10809-991e-407c-b34d-93bab2d719a2" class="">
+</p></div></p><p id="4acf84a6-1f8c-405a-8acc-5119b4c07e84" class="">
+</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">36. pass <code>typeof 1</code> returns <code>&quot;number&quot;</code>. <code>typeof &quot;number&quot;</code> returns <code>&quot;string&quot;</code></summary><div class="indented"><ul id="8ef633c8-ade9-4aa2-858b-6bd06a6e704f" class="toggle"><li><details open=""><summary>console.log(typeof typeof 1);</summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="1b12a185-3e26-4ddd-8154-c0689e87fa3b" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="15e52bdc-01bd-4680-b794-08baf5e73dc9" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="b7db5a84-0629-44eb-907b-e06b97a4ddfe" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="82635530-ad50-4861-be52-b09397e54621" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="3cc93c55-dfa6-4ca9-bbee-5fccec6dcbfe" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="d855a528-a22a-43c3-8ad5-19913340e933" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="330cc8fe-2ac5-4a82-a6a0-037b9d7b589d" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="6d76615a-2283-4622-9a55-5d7c3a7c8632" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="2437a5eb-f666-448f-aa22-b814eeab8d73" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="c6ec3541-c10b-4a40-ac4e-ceb07c01d22c" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="f9d72ed5-5ade-4945-a4c8-597f9a9f4c60" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="05472165-8c82-4f8f-84a2-86bcb0503e95" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="89a91aea-ba1b-4b03-ba6e-f964dd900c32" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="2cc92468-b859-498f-abc3-54273d07452c" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="4278f774-e5e3-4ddb-be01-5396183e553a" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="13cc13ab-5331-4320-b6a9-511d0e1694db" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="61a85742-6ff5-477e-bc9f-78bca6111b6b" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="ca910c6d-5e6f-4c56-ac71-4bf1f91ed532" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="2a08e05f-972c-4d7b-947d-1d4567631016" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="077f2b9a-3d0b-418e-9d87-3e3059e4c806" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="ced1b438-ca58-4160-a565-d9c40f2e19db" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="8fd65c5e-a2b4-4999-9edf-b349e69d102c" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="a17dbeb1-d4d2-4bc8-b10c-4f921f2dcfbb" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="0624873f-9112-4095-a5b2-c8a9d877513e" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="b22bbdb0-7d44-4c59-a741-fa381a01257b" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="78bcbf80-dcb2-4f9c-b218-65db71ca6f39" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="ecee0a37-0f33-4cc6-a3ff-ac98a2ad5018" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="737b2c24-45fe-407d-a50d-278289928f79" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="00906b7d-77cd-4420-a17c-4e07d48c0a72" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="d2374d7f-6344-45aa-8e2f-628969ff72e8" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="5f5a574d-5e4b-4262-9322-df5bc3bbd9b3" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="a32739e9-1c72-41bb-91ac-9b7f8b7b8974" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="fe694fb0-da08-4e8d-8f5e-a741fca2d352" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="c45ff2c4-f504-43da-afbf-26d0de3ea9d9" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="1a8c9228-a48a-4303-86a5-48bd6bc0366a" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="5061db20-ce71-49de-9096-b8f4d24216ec" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="5c352782-e8f1-42bc-bdc7-2beb30a39af2" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="1ed54a68-ee87-45e5-8ab0-aad00710a9fa" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="b9ec87cc-2222-4a92-b356-7e25f3f9de33" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="d40f239a-5cb5-42ba-8bb2-bfab0da8a782" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="f9c54548-df4c-443b-b614-ff5e9a68ee54" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="dedd9961-74bf-4669-a961-f4a78dee26aa" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="8a925276-ffb6-455e-8df8-c71420c817ab" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><p id="5ff45599-0433-4f5f-a4ec-55b0bdfda6f0" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
