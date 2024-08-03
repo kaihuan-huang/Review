@@ -1,0 +1,678 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>API Design</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2ea664a2-1005-4e38-bcce-ea1d10b9952b" class="page sans"><header><h1 class="page-title">API Design</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td><span class="selected-value select-value-color-purple">System Design</span></td></tr></tbody></table></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">1. API? main purpose?</summary><div class="indented"><ul id="24648cd6-4a50-4ed4-93a5-99c44c432bc6" class="toggle"><li><details open=""><summary>API（应用程序编程接口）是允许不同软件应用程序相互通信的规则和协议集合，其主要目的是集成、抽象、重用、标准化、提高效率、可扩展性、安全性和灵活性。</summary><p id="104cbdd1-05e0-4525-a341-32219c078183" class="">An API (Application Programming Interface) is a set of rules and protocols that allows different software applications to communicate with each other, primarily aiming for integration, abstraction, reusability, standardization, efficiency, scalability, security, and flexibility.</p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">2. Differences between API and Wed services</summary><div class="indented"><ul id="93ebfe60-b7e2-4096-b30b-8ed6794e6b1b" class="toggle"><li><details open=""><summary><mark class="highlight-orange">all web services are APIs, not all APIs are web services</mark>. APIs have a broader scope and can be used in various contexts, while web services are specifically designed for network-based communication基于网络的通信而设计, often over the web.</summary><table id="af6aca8d-b558-44dd-9514-0125dc0758fc" class="simple-table"><tbody><tr id="97cde76e-d298-40b1-ad69-8e8d7abb7bab"><td id="dV&gt;x" class="">Feature</td><td id="C&gt;d~" class="">API</td><td id="Y}Qu" class="">Web Services</td></tr><tr id="d0367266-bf4d-410d-8644-3a25139548b8"><td id="dV&gt;x" class="">Definition</td><td id="C&gt;d~" class="">Set of rules for software communication</td><td id="Y}Qu" class="">Specific type of API operating over a network</td></tr><tr id="a9ff14ac-afc8-404d-b061-37d85a39c76c"><td id="dV&gt;x" class="">Protocols</td><td id="C&gt;d~" class="">Various (HTTP, HTTPS, WebSocket, etc.)</td><td id="Y}Qu" class="">Primarily HTTP/HTTPS</td></tr><tr id="e252738b-0910-434c-ac69-b81872a95432"><td id="dV&gt;x" class="">Data Formats</td><td id="C&gt;d~" class="">JSON, XML, plain text, custom formats</td><td id="Y}Qu" class="">XML (SOAP), JSON (REST)</td></tr><tr id="f2cf7067-1096-410b-a81c-4289727f6237"><td id="dV&gt;x" class="">Architectural Style</td><td id="C&gt;d~" class="">REST, RPC,<a href="https://www.notion.so/graphql-84315957a7b64efdb1509a219c58f7fc?pvs=21"> GraphQL</a>, etc.</td><td id="Y}Qu" class="">SOAP, REST</td></tr><tr id="9d1fbfd1-a4fd-4593-a53c-c94df6c3bfa3"><td id="dV&gt;x" class="">Usage</td><td id="C&gt;d~" class="">Wide range (local and network)</td><td id="Y}Qu" class="">Network-based communication</td></tr><tr id="1f5e6306-6785-4c06-a451-4cf291988e93"><td id="dV&gt;x" class="">Flexibility</td><td id="C&gt;d~" class="">High</td><td id="Y}Qu" class="">Moderate</td></tr><tr id="19c9d322-c36f-474d-afe6-45953725af4c"><td id="dV&gt;x" class="">Examples</td><td id="C&gt;d~" class="">Windows API, Java API, Google Maps API</td><td id="Y}Qu" class="">SOAP services, Twitter API, Facebook Graph API</td></tr></tbody></table></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">3. RESTful API Principles?</summary><div class="indented"><ul id="6e26ace7-cdc7-460d-b50c-6d06d9227c15" class="toggle"><li><details open=""><summary><br/>1. Stateless（无状态）<br/></summary><p id="a63ab018-2fa1-4035-aee6-e1f38b00d450" class=""><strong>场景</strong>：<br/>想象你在开发一个分布式系统。每个请求都是独立的，没有依赖于以前的请求状态。你可以自由地在不同服务器上处理每个请求，这样系统的扩展性和可靠性就大大提高了。<br/><br/><strong>记忆点</strong>：<br/>每个请求都是一个完整的“快照”，无需记住之前的状态。<br/></p><p id="2475715b-b173-472a-9003-1174b332ecd7" class=""><strong>Scenario</strong>:<br/>Imagine you are developing a distributed system. Each request is independent and does not rely on previous request states. You can freely handle each request on different servers, greatly improving the scalability and reliability of the system.<br/><br/><strong>Memory Tip</strong>:<br/>Each request is a complete &quot;snapshot&quot; with no need to remember previous states.<br/></p><h3 id="a53435f8-ffff-46a5-8cf6-fc531e1d73bf" class="">2. Client-Server（客户端-服务器）</h3><p id="74cf4d22-f9a8-472c-8c2c-49829da76c38" class=""><strong>场景</strong>：<br/>想象你在构建一个移动应用程序（客户端）和一个后台服务（服务器）。客户端负责用户界面和体验，而服务器处理数据存储和业务逻辑。两者通过API进行通信，各自独立开发和扩展。<br/><br/><strong>记忆点</strong>：<br/>客户端和服务器分离，职责清晰。<br/></p><p id="d3f8ab5c-cb54-4d41-b5e4-248569e08597" class=""><strong>Scenario</strong>:<br/>Imagine you are building a mobile application (client) and a backend service (server). The client handles the user interface and experience, while the server manages data storage and business logic. They communicate through the API, allowing for independent development and scaling.<br/><br/><strong>Memory Tip</strong>:<br/>Client and server are separated with clear responsibilities.<br/></p><h3 id="6cdebdc2-0fb5-4c79-a429-e8da3bfbdab4" class="">3. Uniform Interface（统一接口）</h3><p id="cdcb63c0-f008-45bc-9f82-f7073c6f5a09" class=""><strong>场景</strong>：<br/>想象你设计一个大型的微服务架构。每个微服务都有统一的接口规范，这样不同的服务可以相互通信，无需关心实现细节。例如，所有资源都用标准的HTTP方法（GET, POST, PUT, DELETE）操作。<br/><br/><strong>记忆点</strong>：<br/>统一的标准接口，简化了系统间的交互。<br/></p><p id="ce406163-353c-4500-81b6-42ffc033ac1c" class=""><strong>Scenario</strong>:<br/>Imagine you are designing a large microservices architecture. Each microservice has a unified interface specification, allowing different services to communicate without worrying about implementation details. For example, all resources are manipulated using standard HTTP methods (GET, POST, PUT, DELETE).<br/><br/><strong>Memory Tip</strong>:<br/>A unified standard interface simplifies interactions between systems.<br/></p><h3 id="4f9f1bba-2c8f-4daf-88f3-8cd6a1cfd1ef" class="">4. Resource-Based（资源为基础）</h3><p id="f48596f7-641c-4761-bc31-dc06fa266ab9" class=""><strong>场景</strong>：<br/>想象你在设计一个电子商务平台，每个商品、订单、用户都是一个资源，每个资源都有唯一的URL标识。客户端通过这些URL来获取或操作资源。<br/><br/><strong>记忆点</strong>：<br/>资源都有唯一的标识URL，可以通过URL进行操作。<br/></p><p id="682256f8-f8ce-4bda-8ae0-067b07b78070" class=""><strong>Scenario</strong>:<br/>Imagine you are designing an e-commerce platform where each product, order, and user is a resource, and each resource has a unique URL identifier. Clients use these URLs to access or manipulate resources.<br/><br/><strong>Memory Tip</strong>:<br/>Resources have unique URL identifiers and can be operated on via URLs.<br/></p><h3 id="2f5bd809-f031-4693-89aa-d19b1b440fcd" class="">5. Cacheable（可缓存）</h3><p id="01b5901a-c42f-4fd0-aa1b-cf169b838b88" class=""><strong>场景</strong>：<br/>想象你在优化一个高流量的网站，利用HTTP缓存机制减轻服务器负担，提高响应速度。通过设置适当的缓存头，客户端可以缓存响应，减少重复请求。<br/><br/><strong>记忆点</strong>：<br/>合理使用缓存，提高效率和性能。<br/></p><p id="a5a098f1-f071-4dbd-a228-cd3f31a5b901" class=""><strong>Scenario</strong>:<br/>Imagine you are optimizing a high-traffic website by utilizing HTTP caching mechanisms to reduce server load and improve response speed. By setting appropriate cache headers, clients can cache responses, reducing redundant requests.<br/><br/><strong>Memory Tip</strong>:<br/>Use caching appropriately to improve efficiency and performance.<br/></p><h3 id="a0bc55fd-5b29-4e6e-9bc5-7083d22d06ec" class="">6. Layered System（分层系统）</h3><p id="6784bdf4-94a6-4d89-bb07-b57d4a822785" class=""><strong>场景</strong>：<br/>想象你在设计一个复杂的系统，使用分层架构。前端、中间层（如负载均衡器）、后台服务各司其职。中间层可以处理负载均衡、安全、缓存等功能，而客户端只与中间层交互。<br/><br/><strong>记忆点</strong>：<br/>分层设计，系统更加模块化和可扩展。<br/></p><p id="e2a4b80e-ef0d-41b8-8107-e6e69ddb7ad3" class=""><strong>Scenario</strong>:<br/>Imagine you are designing a complex system using a layered architecture. The frontend, middleware (e.g., load balancers), and backend services each have their responsibilities. The middleware handles load balancing, security, caching, etc., and the client interacts only with the middleware.<br/><br/><strong>Memory Tip</strong>:<br/>Layered design makes the system more modular and scalable.<br/></p><h3 id="7aff1af4-9178-4e66-92c3-f0125d752c82" class="">7. Code on Demand（按需代码）</h3><p id="0e0fdf4f-126b-4d54-aa36-12fb38e946fb" class=""><strong>场景</strong>：<br/>想象你在构建一个富客户端应用，服务器根据需要向客户端发送可执行代码（如JavaScript），以增强客户端功能。例如，单页应用程序（SPA）从服务器获取动态内容和脚本。<br/><br/><strong>记忆点</strong>：<br/>按需加载代码，提升客户端功能和体验。<br/></p><p id="691bc62a-4677-48ca-ae85-ff28985910ce" class=""><strong>Scenario</strong>:<br/>Imagine you are building a rich client application where the server sends executable code (e.g., JavaScript) to the client as needed to enhance client functionality. For example, Single Page Applications (SPAs) fetch dynamic content and scripts from the server.<br/><br/><strong>Memory Tip</strong>:<br/>Load code on demand to enhance client functionality and experience.<br/></p><h3 id="c54c090c-036a-4af4-9a3d-716764efca48" class="">8. Representation-Oriented（表示为主）</h3><p id="959cd56a-f8c9-4c64-92c4-df123c362ce9" class=""><strong>场景</strong>：<br/>想象你在开发一个API，返回的资源可以有多种表示形式，如JSON、XML、HTML。客户端根据需要请求不同的表示形式（通过Content-Type或Accept头），以便更好地处理数据。<br/><br/><strong>记忆点</strong>：<br/>资源有多种表示形式，灵活满足不同客户端需求。<br/></p><p id="1011343d-13ef-4bb4-9de0-05483eae5e7e" class=""><strong>Scenario</strong>:<br/>Imagine you are developing an API that returns resources in various representations, such as JSON, XML, or HTML. Clients request different representations as needed (via Content-Type or Accept headers) to better handle data.<br/><br/><strong>Memory Tip</strong>:<br/>Resources have multiple representations to flexibly meet different client needs.<br/></p></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">4. REST vs. RESTful?</summary><div class="indented"><ul id="6abea3dd-1f0c-4710-8b50-7b336ef4bb31" class="bulleted-list"><li style="list-style-type:disc"><strong>REST</strong>: A general set of principles for web communication and system design.</li></ul><ul id="0e3eeff5-af8a-40f5-adc2-b68227366fb6" class="bulleted-list"><li style="list-style-type:disc"><strong>RESTful</strong>: Specialized implementations that <mark class="highlight-orange">adhere to REST principles, specifically for data exchange over HTTP.</mark></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">5. </summary><div class="indented"><ul id="36fc617f-958b-4142-b16e-c2fbc4e1082e" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="2d395cbb-6efb-40a6-b2dd-a1a4b6d16a99" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="52051d69-0ec8-499b-a07d-265320a44feb" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="73d129cd-619e-46af-8b55-766e5ec1309e" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="2f26d782-6cce-4d56-9208-a6c9714c1a4e" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="43f039f1-1679-4811-be4c-0e82df8f25ae" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="d57b60fa-b18d-4f9b-b953-62c69b1095f8" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="0668a038-c593-4e2c-aa9b-ffc7dab184dc" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="05b91a1d-2ca5-4628-a056-7d29961e2169" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="2ad4bfe7-a6b9-41dc-9041-3af90029bad9" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="8c1bb7cc-8559-4c4b-8bf8-16a43481c7fc" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="f9d93cd2-d91a-4b97-a7df-355afd8b74ee" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="fc767dfd-a8c9-4bf0-9e43-41013b9e7008" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="8cbf64a7-510d-46c8-801b-9d5e6690d461" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="21ace82b-741e-4477-b1c5-759d817d204e" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"></summary><div class="indented"><ul id="754f36a8-6102-44e4-8321-d0cb18d5c8ae" class="toggle"><li><details open=""><summary></summary></details></li></ul></div></details><p id="574c0c67-6360-4540-979e-4c145a8fdb6e" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
