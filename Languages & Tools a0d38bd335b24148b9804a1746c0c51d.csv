@@ -1,0 +1,86 @@
+﻿Name,Tags,tools on,which project have been used this skill,Date
+Java,Programming Languages,,Used Java on the class Data structure and Algorithms did a project on the school on a drawing function,
+JavaScript,Programming Languages,"notion://www.notion.so/f679f9c00eea40638ddd67b3da6bf4a7?pvs=24notion://www.notion.so/f679f9c00eea40638ddd67b3da6bf4a7?pvs=24 ","
+I am proficient in using various JavaScript frameworks and libraries, such as React, Next, to develop and manage complex front-end applications quickly. These tools help me increase development efficiency and create more dynamic user experiences.",
+Php,Programming Languages,,project V1 REAAI dashboard：我们的investor 认为用php会更快，并且有一部分的代码基础,
+Python,Programming Languages,,"Machine Learning Algorithms Framework ( Tensorflow, Pytorch…)
+Tools:
+https://www.notion.so/Numpy-40d1f4972c884713bc82e2cb8f518624?pvs=21最主要 to perform calculations on arrays，而 Pandas 是建立在 NumPy 之上 to handle more complex data types（比如Dataframe和Series），Matplotlib负责data visualization。
+
+",
+TypeScript,Programming Languages,"leetcode frontend (https://www.notion.so/f679f9c00eea40638ddd67b3da6bf4a7?pvs=21) ",JavaScript 的超集，增加了静态类型检查，帮助开发人员在编写代码时发现潜在的错误，提高了代码的可靠性和可维护性。,
+React,,"leetcode frontend (https://www.notion.so/f679f9c00eea40638ddd67b3da6bf4a7?pvs=21) ",一个用于构建用户界面的 JavaScript 库。React 通过其组件化设计和虚拟 DOM 技术，使得构建复杂的单页面应用程序（SPA）变得更加高效。,
+CSS3,Frontend Development,"leetcode frontend (https://www.notion.so/f679f9c00eea40638ddd67b3da6bf4a7?pvs=21) ","Bootstrap：CSS Framework提供丰富的UI组件和强大的响应式网格系统，通过引入CDN链接或下载文件快速使用。
+Provides a wealth of UI components and a powerful responsive grid system, quickly used by linking CDN or downloading files.Tailwind CSS：基于实用类的CSS框架，灵活性高，通过引入CDN链接或配置PostCSS工具使用。
+A utility-first CSS framework with high flexibility, used by linking CDN or configuring PostCSS tools.
+Sass：一种增强版的CSS预处理器，提供嵌套规则、变量和混合等功能，通过编译成标准CSS使用。An enhanced CSS preprocessor offering features like nested rules, variables, and mixins, used by compiling into standard CSS.",
+HTML5,Frontend Development,"leetcode frontend (https://www.notion.so/f679f9c00eea40638ddd67b3da6bf4a7?pvs=21) ",(HyperText Markup Language),
+redux,Frontend Development,"leetcode frontend (https://www.notion.so/f679f9c00eea40638ddd67b3da6bf4a7?pvs=21) ","For complex applications, I use state management tools like Redux to manage the application's state. This ensures that data is consistently passed and updated across different parts of the application.",
+webpack,"Frontend Development, Performance Optimization","leetcode frontend (https://www.notion.so/f679f9c00eea40638ddd67b3da6bf4a7?pvs=21) ",,
+express.js,Backend Development,,,
+graphql,"Backend Development, Data APIS",,,
+nginx,"Backend Development, Performance Optimization",,,
+node.js,Backend Development,,,
+tensorflow,"AI/ML, Algorithms Framework, Jupyter Notebook/ Google Colab",,https://www.tensorflow.org/ is an open source platform for machine learning,
+pytorch,"AI/ML, Algorithms Framework, Jupyter Notebook/ Google Colab",,,
+scikit_learn,AI/ML,,,
+opencv,AI/ML,,,
+Numpy,"AI/ML, Tools",,"
+1. Numpy Array 创建
+2. Array Indexing 索引
+3. Array Math 数学
+4. 高级操作（Broadcasting, Transposing）
+5. 合并和分割 Numpy Array",
+pandas,"AI/ML, Tools",,"
+1. Series, DataFrame
+2. 索引、过滤（Indexing, Filtering）
+3. 排序、更新行列（Sorting, Updating Rows and Columns）
+4. 合并和分组（Concatenation, Grouping）
+5. 数据清理（Data Cleaning）
+6. 数据可视化（Plotting）",
+seaborn,AI/ML,,,
+mongoDB,Database,,一种 NoSQL 数据库，使用灵活的 JSON 文档格式存储数据，适合需要快速开发和扩展的应用。MongoDB 特别适用于需要处理大量非结构化数据的场景。,
+https://roadmap.sh/sql,Database,,结构化查询语言，用于与关系型数据库进行交互，执行查询、插入、更新和删除等操作。SQL 是关系型数据库操作的基础。,
+postgresql,Database,,一种功能强大的开源关系型数据库系统，支持高级数据类型、事务管理和并发控制，适合处理复杂查询和大规模数据存储。,
+redis,Database,,一种开源的内存数据结构存储，用作数据库、缓存和消息代理。Redis 以其高性能和支持多种数据结构（如字符串、哈希、列表）而闻名。,
+aws,Devops,,,
+kubernetes,Devops,,,
+docker,Devops,,"Docker is a container for developing, shipping, and running applications.",
+bash,Devops,,,
+Azure,Devops,,used for cloud deployment,
+heroku,Backend as a Service(BaaS),,host platform,
+Django,Framework,,Backend framework,
+Flask,Framework,,backend framework,
+Figma,Software,,"UXUI tools, used for REAAI projects",
+postman,Software,,API-related tools like Swagger or Postman will help you document their behavior and share the endpoints with your team.,
+git / github,CI/CD,,"CICD 
+• Git is a distributed version control system for tracking changes in source code during software development. GitHub and GitLab are hosting services for Git repositories offering collaboration features.",
+CUDA,NVIDIA,,"ovgnq1xyyyzm
+",
+API,Software Development,,API (Application Programming Interface): A set of rules and specifications that software applications can follow to communicate with each other.,
+Microservices Architecture,Software Development,,"A style of software architecture that structures an application as a collection of loosely coupled services, improving modularity and scalability.",
+webhook,,,,
+ORM,,,"Object Relational Mapping (ORM) a ""bridge"" between object-oriented programs and relational database",
+Design Patterns,,,"Reusable solutions to common problems in software design, providing templates for how to solve problems in various contexts.",
+"CNN (https://www.notion.so/CNN-effbefca90bb4ec090f8b7583f52bc09?pvs=21) ",,,,
+ES6,,,"ES6 (ECMAScript 2015) is the sixth edition of JavaScript, which introduced many new features and improvements, including let and const, arrow functions, template strings, destructuring assignment, and module imports/exports.",
+https://h5bp.org/Front-end-Developer-Interview-Questions/questions/general-questions/,,,,
+Testing,,,,
+Performance,,,,
+Network,,,,
+" computing basics, operating systems, virtualization, containerization, and orchestration",,,,
+https://www.notion.so/581fcb8ac5514b75bfca273d4629d545?pvs=21,,,https://www.notion.so/581fcb8ac5514b75bfca273d4629d545?pvs=21,
+accessibility interview questions,,,衡量gauge应聘者对网络可访问性web accessibility的知识和经验：,
+OS,,,,
+https://www.notion.so/553c2802bc2443cebc7573c9bf5a525b?pvs=21,,,https://www.notion.so/457070d4b36147dc8bef84a5808f6b8b?pvs=21,
+Vector Database,,,"https://aibyhand.substack.com/
+https://docs.google.com/spreadsheets/d/1WNa9sBDC9TmmaeQnKiz_50Q1TdT3RPY-_0821q_G_Ac/edit?gid=771396040#gid=771396040",
+SaaS,,,"• SaaS stands for Software as a Service.
+• A SaaS company is a company that hosts an application and makes it available to customers over the internet.",
+WebSockets,,,,
+API Design,System Design,,,
+PWA(progress web application),,,,
+Next.js,Production-grade React framework,,,
+Caching,Performance Optimization,,,
+,,,,
+New,,,通过将常用数据存储在本地或服务器端缓存中，减少服务器负载、降低延迟，从而提高应用程序性能。常用的缓存策略包括 HTTP 缓存、Service Workers 缓存等。,
