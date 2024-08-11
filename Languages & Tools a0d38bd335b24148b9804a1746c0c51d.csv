@@ -38,8 +38,6 @@ pandas,"AI/ML, Tools",,"
 4. 合并和分组（Concatenation, Grouping）
 5. 数据清理（Data Cleaning）
 6. 数据可视化（Plotting）",
-
-
 seaborn,AI/ML,,,
 mongoDB,Database,,一种 NoSQL 数据库，使用灵活的 JSON 文档格式存储数据，适合需要快速开发和扩展的应用。MongoDB 特别适用于需要处理大量非结构化数据的场景。,
 https://roadmap.sh/sql,Database,,结构化查询语言，用于与关系型数据库进行交互，执行查询、插入、更新和删除等操作。SQL 是关系型数据库操作的基础。,
