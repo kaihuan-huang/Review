@@ -15,6 +15,7 @@ use <dbname> // use or create database
 show collections // show collections
 Collections
 db.createCollection("coll") // creates the collection `coll`
+
 db.coll.drop() // removes the collection `coll`
 Create a collection with a $jsonschema validator
 
