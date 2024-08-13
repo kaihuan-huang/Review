@@ -1,0 +1,23 @@
+name: Daily Log Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 每天00:00 UTC执行
+
+jobs:
+  update-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update Log
+        run: |
+          DATE=$(date +"%Y-%m-%d")
+          LOG_ENTRY="## ${DATE} - 日志标题\n### 进展\n- \n\n### 问题\n- \n\n### 决策\n- \n\n### 下一个步骤\n- \n\n### 备注\n- \n\n---\n"
+          echo -e "${LOG_ENTRY}$(cat LOG.md)" > LOG.md
+          git config --local user.email "you@example.com"
+          git config --local user.name "Your Name"
+          git add LOG.md
+          git commit -m "Daily log update for ${DATE}"
+          git push origin main
