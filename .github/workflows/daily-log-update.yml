@@ -15,9 +15,7 @@ jobs:
         run: |
           DATE=$(date +"%Y-%m-%d")
           DAILY_NOTE="**Daily Note - ${DATE}**\n\n
-          
-          
-          
+        
           \n"
           LOG_ENTRY="## ${DATE} - 日志标题\n### 进展\n- \n\n### 问题\n- \n\n### 决策\n- \n\n### 下一个步骤\n- \n\n### 备注\n- \n\n${DAILY_NOTE}\n---\n"
           echo -e "${LOG_ENTRY}$(cat LOG.md)" > LOG.md
