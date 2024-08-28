@@ -1,0 +1,62 @@
+graph TD;
+    A[Is it a graph? Template] --> |Yes| B[Is it a tree?];
+    A --> |No| Z[Other Problem Types];
+    B --> |Yes| C([DFS<br/>Maze solving]);
+    B --> |No| D[Is the problem related to directed acyclic graphs?];
+    D --> |Yes| E([Topological Sort<br/>Course scheduling]);
+    D --> |No| F[Is the problem related to shortest paths?];
+    F --> |Yes| G[Is the graph Weighted?];
+    G --> |Yes| H([Dijkstra's Algorithm<br/>GPS navigation]);
+    G --> |No| I([BFS<br/>Social network shortest path]);
+    F --> |No| J[Does the problem involve connectivity?];
+    J --> |Yes| K([Disjoint Set Union<br/>Network connectivity]);
+    J --> |No| L[Does the problem have small constraints?];
+    L --> |Yes| M([DFS/Backtracking<br/>Sudoku solving]);
+    L --> |No| N([BFS<br/>Game state exploration]);
+
+    Z --> O[Need to solve for k-th smallest/largest?];
+    O --> |Yes| P([Heap / Sortings<br/>k-th largest salary]);
+    O --> |No| Q[Involves Linked Lists?];
+    Q --> |Yes| R([Two Pointers<br/>Detect cycle in Linked List]);
+    Q --> |No| S[Small constraint bounds?];
+    S --> |Yes| T[Is brute force fast enough?];
+    T --> |Yes| U([Brute force / Backtracking<br/>Traveling Salesman]);
+    T --> |No| V([Dynamic Programming<br/>Knapsack problem]);
+
+    V --> W[About subarrays or substrings?];
+    W --> |Yes| X[Deals with sums or additive?];
+    X --> |Yes| Y([Prefix Sums<br/>Subarray sum equals k]);
+    X --> |No| AA[Calculating max/min of something?];
+    AA --> |Yes| AB([Sliding Window<br/>Max sum of subarray]);
+    AA --> |No| AC[Monotonic condition?];
+    AC --> |Yes| AD([Binary Search<br/>Find in sorted array]);
+    AC --> |No| AE[Can be split into sub-problems?];
+    AE --> |Yes| AF([Dynamic Programming<br/>Longest Increasing Subsequence]);
+    AE --> |No| AG[Greedily calculate answer?];
+    AG --> |Yes| AH([Greedy Algorithms<br/>Huffman Coding]);
+    AG --> |No| AI[Asking for number of ways?];
+    AI --> |Yes| AJ[Is brute force fast enough?];
+    AJ --> |Yes| AK([Brute Force / Backtracking<br/>N-Queens Problem]);
+    AJ --> |No| AL([Dynamic Programming<br/>Count paths in grid]);
+
+    AL --> AM[Multiple sequences?];
+    AM --> |Yes| AN[Monotonic conditions?];
+    AN --> |Yes| AO([Two Pointers<br/>Merge sorted arrays]);
+    AN --> |No| AP[Can split into sub-problems?];
+    AP --> |Yes| AQ([Dynamic Programming<br/>Longest Common Subsequence]);
+    AP --> |No| AR[Find or enumerate indices?];
+    AR --> |Yes| AS[Monotonic Condition?];
+    AS --> |Yes| AT([Two Pointers<br/>Two-sum in sorted array]);
+    AR --> |No| AU[Constant memory required?];
+    AU --> |Yes| AV[Involves monotonic condition?];
+    AV --> |Yes| AW([Two Pointers<br/>Remove duplicates from sorted array]);
+
+    %% 样式定义
+    classDef decision fill:#ffcc00,stroke:#333,stroke-width:2px,shape:rect;
+    classDef algorithm fill:#bbf,stroke:#333,stroke-width:2px,shape:rect;
+
+    %% 应用样式
+    class B,D,F,J,L,O,Q,S,W,X,AA,AC,AE,AG,AI,AL,AM,AN,AP,AR,AU,AV decision;
+    class C,E,H,I,K,M,N,P,R,T,U,V,Y,AB,AD,AF,AH,AJ,AK,AQ,AS,AT,AW algorithm;
+
+    click A "https://algo.monster/templates" "Template"
