@@ -59,4 +59,4 @@ graph TD;
     class B,D,F,J,L,O,Q,S,W,X,AA,AC,AE,AG,AI,AL,AM,AN,AP,AR,AU,AV decision;
     class C,E,H,I,K,M,N,P,R,T,U,V,Y,AB,AD,AF,AH,AJ,AK,AQ,AS,AT,AW algorithm;
 
-    click A "https://algo.monster/templates" "Template"
+    click A "https://algo.monster/templates" "Templae"
