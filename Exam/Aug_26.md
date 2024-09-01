@@ -120,3 +120,13 @@ if __name__ == '__main__':
 4. 格式化输出结果，使其保留一位小数。
 
 通过这些步骤，这三道题都能够高效地解决。每道题都运用了相应的算法和数据处理技巧，确保结果的准确性和性能的优化。
+
+class Solution(object):
+    def frequencySort(self, s):
+        res = []
+        for c in set(s):
+            count = s.count(c)
+            res.append(count*c)
+        res = sorted(res, key = len, reverse = True)
+
+        return ''.join(res)
