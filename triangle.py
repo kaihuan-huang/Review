@@ -62,23 +62,6 @@ matrix = [[1,1,1],[2,2,2],[3,3,3]]
 print(rotate_image(matrix))
 
 
-'''1047. Remove All Adjacent Duplicates In String
 
-Input: S = aaazyyzybab -> azyyzybab -> azzybab -> aybab
-    Output: aybab
-'''
-def remove_duplicates(S):
-    stack = []
-    for char in S:
-        if stack and stack[-1] == char:
-            stack.pop()
-        else:
-            stack.append(char)
-    return ''.join(stack)
-
-
-
-S = "aaazyyzybab"
-print(remove_duplicates(S))
 
 
