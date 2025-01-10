@@ -25,3 +25,8 @@ Resource-Intensive Operations: To speed up computationally expensive operations.
 Stale Data Management: When it’s acceptable to use slightly outdated data for a short period.
 Redundant Computations: To avoid repeating the same computations.
 Load Balancing: To manage sudden spikes in demand on primary data sources or processors.
+
+TypeORM
+A powerful Object-Relational Mapping (ORM) library that works seamlessly with TypeScript. It simplifies database interactions by providing decorators, migrations, and query builders, making it ideal for working with SQL databases like PostgreSQL or MySQL.
+Key Feature: Full TypeScript support ensures type safety in database models and queries.
+
